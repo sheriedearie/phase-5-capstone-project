@@ -1,6 +1,9 @@
 class User < ApplicationRecord
-  has_many :products
-  has_one_attached :avatar, dependent: :destroy
+  has_many :purchased_products, class_name "Product"
+  has_many :created_products, class_name "Product", foreign_key: :user_id
+  # has_one_attached :avatar, dependent: :destroy
+
+  has_secure_password
 
   validates :username, presence: true, uniqueness: true, length: {in: 3..20}
   validates :password, length: {in: 3..50}
