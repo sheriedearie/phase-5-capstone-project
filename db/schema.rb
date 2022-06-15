@@ -14,15 +14,14 @@ ActiveRecord::Schema.define(version: 2021_06_03_193805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.string "image_url"
-    t.string "bio"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  add_foreign_key "recipes", "users"
+  # create_table "users", force: :cascade do |t|
+  #   t.string "name"
+  #   t.string "username"
+  #   t.string "password_digest"
+  #   t.string "image_url"
+  #   t.datetime "created_at", precision: 6, null: false
+  #   t.datetime "updated_at", precision: 6, null: false
+  #   t.string "email"
+  # end
+ 
 end

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 
-function RecipeList() {
+function ReviewList() {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("/api/recipes")
+    fetch("/api/reviews")
       .then((r) => r.json())
       .then(setRecipes);
   }, []);
@@ -50,4 +50,4 @@ const Recipe = styled.article`
   margin-bottom: 24px;
 `;
 
-export default RecipeList;
+export default ReviewList;

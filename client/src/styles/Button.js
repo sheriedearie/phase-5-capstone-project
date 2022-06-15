@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const COLORS = {
   primary: {
-    "--main": "indigo",
+    "--main": "#aa8031",
     "--accent": "white",
   },
   secondary: {
-    "--main": "lavenderblush",
-    "--accent": "indigo",
+    "--main": "#aa8031",
+    "--accent": "white",
   },
 };
 
@@ -29,6 +29,7 @@ const ButtonBase = styled.button`
   border-radius: 6px;
   padding: 8px 16px;
   text-decoration: none;
+  text-align: center;
 `;
 
 const FillButton = styled(ButtonBase)`
@@ -37,6 +38,7 @@ const FillButton = styled(ButtonBase)`
 
   &:hover {
     opacity: 0.9;
+    color: black;
   }
 `;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
-function NewRecipe({ user }) {
+function NewReview({ user }) {
   const [title, setTitle] = useState("My Awesome Recipe");
   const [minutesToComplete, setMinutesToComplete] = useState("30");
   const [instructions, setInstructions] = useState(`Here's how you make it.
@@ -25,7 +25,7 @@ function NewRecipe({ user }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/api/recipes", {
+    fetch("/api/reviews/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,4 +114,4 @@ const WrapperChild = styled.div`
   flex: 1;
 `;
 
-export default NewRecipe;
+export default NewReview;

@@ -9,7 +9,7 @@ function Login({ onLogin }) {
 
   return (
     <Wrapper>
-      <Logo>Reciplease</Logo>
+      <Logo>Amazon 2.0</Logo>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
@@ -38,9 +38,15 @@ function Login({ onLogin }) {
 }
 
 const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
+  font-family: "marker", Arial, Helvetica, sans-serif;
   font-size: 3rem;
-  color: deeppink;
+  color: #394b45;
+  //this color is like a spruce
+  // color: #2B3833;
+  // this color is grey
+  // color: #394b45;
+  // this color is a terra cotta color
+  // color: #995312;
   margin: 8px 0 16px;
 `;
 
