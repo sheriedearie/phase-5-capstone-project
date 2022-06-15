@@ -40,13 +40,7 @@ function Login({ onLogin }) {
 const Logo = styled.h1`
   font-family: "marker", Arial, Helvetica, sans-serif;
   font-size: 3rem;
-  color: #394b45;
-  //this color is like a spruce
-  // color: #2B3833;
-  // this color is grey
-  // color: #394b45;
-  // this color is a terra cotta color
-  // color: #995312;
+  color: #994718;
   margin: 8px 0 16px;
 `;
 
