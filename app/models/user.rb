@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  has_many :reviewed_products, through: :reviews 👍
-  has_many :purchased_products, through: :purchases 👍
-  has_many :reviews 👍
-  has_many :purchases 👍
+  has_many :purchases
+  has_many :purchased_products, through: :purchases, source: :product
+  has_many :reviews, through: :purchases
+  has_many :products
   # has_one_attached :avatar, dependent: :destroy
 
   has_secure_password

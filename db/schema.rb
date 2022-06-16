@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_175236) do
+ActiveRecord::Schema.define(version: 2022_06_15_224746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,67 +43,43 @@ ActiveRecord::Schema.define(version: 2022_06_15_175236) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "appointments", force: :cascade do |t|
-    t.bigint "pet_id", null: false
-    t.bigint "owner_id", null: false
-    t.bigint "walker_id", null: false
-    t.time "walk_time"
-    t.date "walk_date"
-    t.text "comments"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id"], name: "index_appointments_on_owner_id"
-    t.index ["pet_id"], name: "index_appointments_on_pet_id"
-    t.index ["walker_id"], name: "index_appointments_on_walker_id"
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.string "species"
-    t.string "breed"
-    t.text "bio"
-    t.string "image_url"
-    t.bigint "owner_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["owner_id"], name: "index_pets_on_owner_id"
-  end
-
   create_table "products", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
     t.string "image_url"
     t.integer "price"
-    t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_purchases_on_product_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
-    t.string "username"
-    t.string "product"
+    t.bigint "purchase_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["purchase_id"], name: "index_reviews_on_purchase_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
     t.string "password_digest"
-    t.string "image_url"
-    t.string "bio"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "role", default: 0
-    t.string "email"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "appointments", "pets"
-  add_foreign_key "appointments", "users", column: "owner_id"
-  add_foreign_key "appointments", "users", column: "walker_id"
-  add_foreign_key "pets", "users", column: "owner_id"
 end
