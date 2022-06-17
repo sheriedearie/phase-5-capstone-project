@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+
+    resources :users, only: [:index]
   end
   # all other routes will be load our React application
   # this route definition matches:

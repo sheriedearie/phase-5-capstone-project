@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :authorize, only: :create
+  skip_before_action :authorize, only: [:create, :index]
 
   def create
     user = User.create!(user_params)
@@ -11,10 +11,15 @@ class Api::UsersController < ApplicationController
     render json: @current_user
   end
 
+  def index
+    users = User.all
+    render json: users,  status: 200
+  end
+
   private
 
   def user_params
-    params.permit(:username, :password, :password_confirmation, :image_url, :bio)
+    params.permit(:username, :password, :password_confirmation, :image_url, :products)
   end
 
 end
