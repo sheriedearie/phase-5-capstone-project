@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
-import PetList from '../pages/PetList'
-import { UserContext } from './User'
+import { UserContext } from '../components/User'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Button, Error, Input, FormField, Label, Textarea } from "../styles";
+import { Button, Error, Input, FormField, Label } from "../styles";
 
 function SignUpForm({ onLogin }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [bio, setBio] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,11 +21,12 @@ function SignUpForm({ onLogin }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username,
+        email: email,
+        name: name,
+        username: username,
         password,
         password_confirmation: passwordConfirmation,
-        image_url: imageUrl,
-        bio,
+        image_url: imageUrl
       })
     }).then((r) => {
       setIsLoading(false);
@@ -35,9 +37,29 @@ function SignUpForm({ onLogin }) {
       }
     });
   }
-
+console.log(onLogin)
   return (
     <form onSubmit={handleSubmit}>
+      <FormField>
+        <Label htmlFor="email">Email</Label>
+        <Input
+          type="text"
+          id="email"
+          autoComplete="off"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormField>
+      <FormField>
+        <Label htmlFor="name">Name</Label>
+        <Input
+          type="text"
+          id="name"
+          autoComplete="off"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </FormField>
       <FormField>
         <Label htmlFor="username">Username</Label>
         <Input
@@ -75,15 +97,6 @@ function SignUpForm({ onLogin }) {
           id="imageUrl"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </FormField>
-      <FormField>
-        <Label htmlFor="bio">Bio</Label>
-        <Textarea
-          rows="3"
-          id="bio"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
         />
       </FormField>
       <FormField>

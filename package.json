@@ -1,5 +1,5 @@
 {
-  "name": "phase-4-deploying-app-demo",
+  "name": "phase-5-capstone-project",
   "description": "Build scripts for Heroku",
   "engines": {
     "node": "16.x"
@@ -11,6 +11,9 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run deploy"
   },
   "dependencies": {
-    "react-helmet": "^6.1.0"
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "bootstrap": "^5.1.3"
   }
 }

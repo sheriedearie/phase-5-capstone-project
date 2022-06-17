@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
+import {UserContext} from './User'
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
@@ -6,10 +7,12 @@ import Login from "../pages/Login";
 import NewReview from "../pages/NewReview";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
+import Profile from "../pages/Profile";
 
 
 function App() {
-  const [user, setUser] = useState(null);
+  const { user, setUser } = useContext(UserContext);
+
 
   useEffect(() => {
     // auto-login
@@ -20,12 +23,12 @@ function App() {
     });
   }, []);
 
-  if (!user) return <Login />;
-
+  if (!user) { return <Login />;
+  }
+  else {
   return (
       <>
         <NavBar user={user} setUser={setUser} />
-        <main>
           <Switch>
             <Route path="/reviews/new">
               <NewReview />
@@ -40,7 +43,7 @@ function App() {
               <Login />
             </Route>
             <Route path="/profile">
-              {/* <Profile /> */}
+              <Profile />
             </Route>
             <Route path="/signup">
               <SignUpForm />
@@ -49,9 +52,9 @@ function App() {
               <Home />
             </Route>
           </Switch>
-        </main>
       </>
     );
+  }
 }
 
 

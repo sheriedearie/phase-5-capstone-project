@@ -135,7 +135,7 @@ Second, the `package.json` file in the **root** directory (not the one in the
 
 ```json
 {
-  "name": "phase-4-deploying-app-demo",
+  "name": "phase-5-capstone-project",
   "description": "Build scripts for Heroku",
   "engines": {
     "node": "16.x"
