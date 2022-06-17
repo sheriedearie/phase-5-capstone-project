@@ -1,3 +1,4 @@
+import { UserProvider } from "./components/User";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
@@ -21,9 +22,11 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <BrowserRouter>
-    <GlobalStyle />
-    <App />
-  </BrowserRouter>,
+  <UserProvider>
+    <BrowserRouter>
+      <GlobalStyle />
+      <App />
+    </BrowserRouter>
+  </UserProvider>,
   document.getElementById("root")
 );

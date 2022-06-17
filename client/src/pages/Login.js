@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignUpForm";
 import { Button } from "../styles";
+import { UserContext } from "../components/User";
 
-function Login({ onLogin }) {
+function Login() {
   const [showLogin, setShowLogin] = useState(true);
+  const { onLogin } = useContext(UserContext);
 
   return (
     <Wrapper>
