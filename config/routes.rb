@@ -4,11 +4,12 @@ Rails.application.routes.draw do
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    # get "/products", to: "products#index"
 
     resources :reviews
     resources :products
     resources :purchases
-    resources :users, only: [:index]
+    resources :users, only: [:index, :show]
   end
   # all other routes will be load our React application
   # this route definition matches:

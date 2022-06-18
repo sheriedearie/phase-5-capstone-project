@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :avatar, :name
-  # has_many :products, serializer: ProductSerializer
+  has_many :products, serializer: ProductSerializer
   # has_many :purhcased_products, serializer: ProductSerializer
 
   # def avatar
