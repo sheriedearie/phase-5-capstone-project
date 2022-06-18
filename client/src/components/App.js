@@ -9,7 +9,7 @@ import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
 import ProductCard from "../pages/ProductCard";
-import ProductList from "../pages/ProductList";
+// import ProductList from "../pages/ProductList";
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
               <NewProduct/>
             </Route>
             <Route path="/products">
-              <ProductList/>
+              <ProductCard/>
             </Route>
             <Route path="/signin">
               <Login />

@@ -8,13 +8,13 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    render json: @current_user
+    render json: current_user
   end
 
-  def index
-    users = User.all
-    render json: users,  status: 200
-  end
+  # def index
+  #   users = User.all
+  #   render json: users,  status: 200
+  # end
 
   private
 

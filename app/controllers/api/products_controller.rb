@@ -3,11 +3,12 @@ class Api::ProductsController < ApplicationController
     skip_before_action :authorize, only: [:index]
 
     def index
+        binding.pry
         render json: current_user.products
     end
 
     def create
-        product = current_user.create!(product_params)
+        product = current_user.products.create!(product_params)
           render json: product, status: :created
       end
 
@@ -17,7 +18,7 @@ private
     params.permit(:name, :user_id, :image_url, :price)
     end
 
-    def check_admin!
-        render json: { errors: ["Not authorized"]}, status: :unauthorized unless @current_user.admin?
-    end
+    # def check_admin!
+    #     render json: { errors: ["Not authorized"]}, status: :unauthorized unless @current_user.admin?
+    # end
 end
