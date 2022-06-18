@@ -15,11 +15,23 @@ function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/">Reciplease</Link>
+        <Link to="/home">Kome N Get'it</Link>
       </Logo>
-      <Nav>
-        <Button as={Link} to="/new">
-          New Recipe
+      <Nav user={user} setUser={setUser}>
+      <Button as={Link} to="/profile">
+          Profile
+        </Button>
+        <Button as={Link} to="/product/new">
+          Create A New Product
+        </Button>
+        <Button as={Link} to="/products">
+          Available Products
+        </Button>
+        <Button as={Link} to="/cart">
+          Cart
+        </Button>
+        <Button as={Link} to="/reviews">
+          Reviews
         </Button>
         <Button variant="outline" onClick={handleLogoutClick}>
           Logout
@@ -39,7 +51,7 @@ const Wrapper = styled.header`
 const Logo = styled.h1`
   font-family: "Permanent Marker", cursive;
   font-size: 3rem;
-  color: deeppink;
+  color: #994718;
   margin: 0;
   line-height: 1;
 

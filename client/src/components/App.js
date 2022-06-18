@@ -4,10 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 // import ReviewList from "../pages/ReviewList";
-import NewReview from "../pages/NewReview";
+import NewProduct from "../pages/NewProduct";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
+import ProductCard from "../pages/ProductCard";
+import ProductList from "../pages/ProductList";
 
 
 function App() {
@@ -31,13 +33,13 @@ function App() {
         <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/reviews/new">
-              <NewReview />
+              <NewProduct />
             </Route>
-            <Route path="/products/new">
-              {/* <NewProducts/> */}
+            <Route path="/product/new">
+              <NewProduct/>
             </Route>
             <Route path="/products">
-              {/* <ProductsCard/> */}
+              <ProductList/>
             </Route>
             <Route path="/signin">
               <Login />
