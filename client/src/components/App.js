@@ -8,8 +8,7 @@ import NewProduct from "../pages/NewProduct";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
-import ProductCard from "../pages/ProductCard";
-// import ProductList from "../pages/ProductList";
+import ProductContainer from "../pages/ProductContainer";
 
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
               <NewProduct/>
             </Route>
             <Route path="/products">
-              <ProductCard/>
+              <ProductContainer/>
             </Route>
             <Route path="/signin">
               <Login />

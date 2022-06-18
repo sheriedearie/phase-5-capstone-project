@@ -3,7 +3,6 @@ class Api::ProductsController < ApplicationController
     skip_before_action :authorize, only: [:index]
 
     def index
-        binding.pry
         render json: current_user.products
     end
 
