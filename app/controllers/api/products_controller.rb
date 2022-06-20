@@ -14,7 +14,7 @@ class Api::ProductsController < ApplicationController
 private
 
     def product_params
-    params.permit(:name, :user_id, :image_url, :price)
+    params.permit(:name, :user_id, :photo, :price)
     end
 
     # def check_admin!

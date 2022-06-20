@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard'
 
-const ProductList = ({products}) => {
+const ProductList = ( {products} ) => {
      console.log("this is the product list")
      console.log(products)
   return (

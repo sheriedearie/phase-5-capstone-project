@@ -3,13 +3,13 @@ import {UserContext} from './User'
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
-// import ReviewList from "../pages/ReviewList";
 import NewProduct from "../pages/NewProduct";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
 import ProductContainer from "../pages/ProductContainer";
 import Cart from '../pages/Cart'
+import ReviewContainer from "../pages/ReviewContainer";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -31,14 +31,14 @@ function App() {
       <>
         <NavBar user={user} setUser={setUser} />
           <Switch>
-            <Route path="/reviews/new">
-              <NewProduct />
-            </Route>
             <Route path="/product/new">
               <NewProduct/>
             </Route>
             <Route path="/products">
               <ProductContainer/>
+            </Route>
+            <Route path="/reviews">
+              <ReviewContainer />
             </Route>
             <Route path="/cart">
               <Cart/>

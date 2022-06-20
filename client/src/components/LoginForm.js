@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
+
 import { Button, Error, Input, FormField, Label } from "../styles";
 
 function LoginForm({ onLogin }) {
@@ -6,6 +8,8 @@ function LoginForm({ onLogin }) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -20,6 +24,7 @@ function LoginForm({ onLogin }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => onLogin(user));
+        history.push("/home");
       } else {
         r.json().then((err) => setErrors(err.errors));
         console.log(errors)

@@ -8,7 +8,7 @@ const ProductContainer = () => {
         fetch("/api/products").then((r) => r.json()).then(
             prods => 
             {
-                console.log("HERE ARE THE PRODUCTS")
+                console.log("HERE ARE THE PRODUCTS(Container)")
                 console.log(prods)
                 setProducts(prods);
             })

@@ -22,6 +22,7 @@ function SignUpForm({ onLogin }) {
     formData.append("username", username)
     formData.append("password", password)
     formData.append("password_confirmation", passwordConfirmation)
+    // formData.append("avatar", avatar)
 
 
     fetch("/api/signup", {
@@ -92,9 +93,9 @@ console.log(onLogin)
         />
       </FormField>
       <FormField>
-        <Label htmlFor="avatar">Profile Image</Label>
+        <Label htmlFor="image_url">Profile Image</Label>
         <Input
-          type="text"
+          type="file"
           id="avatar"
           value={avatar}
           onChange={(e) => avatar.current = (e.target.value)}
