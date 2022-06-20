@@ -21,6 +21,7 @@ function NewProduct() {
     // formData.append("name", name)
     formData.append("name", name)
     formData.append("price", price)
+    formData.append("photo", photo)
 
     fetch("/api/products", {
       method: "POST",
@@ -64,7 +65,7 @@ function NewProduct() {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="mediaUrl">Picture of Your Product: </Label>
+            <Label htmlFor="mediaUrl">Product: </Label>
             <Input
               type="file"
               name="photo"

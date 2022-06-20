@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, Error, Input, FormField, Label } from "../styles";
 
 function SignUpForm({ onLogin }) {
@@ -7,35 +7,36 @@ function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const avatar = useRef(null);
+
 
   function handleSubmit(e) {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
+    const formData = new FormData(e.target)
+    formData.append("name", name)
+    formData.append("email", email)
+    formData.append("username", username)
+    formData.append("password", password)
+    formData.append("password_confirmation", passwordConfirmation)
+
+
     fetch("/api/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        name: name,
-        username: username,
-        password,
-        password_confirmation: passwordConfirmation,
-        image_url: imageUrl
-      })
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
-        r.json().then((user) => onLogin(user));
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+      body: formData
+    })
+      .then((r) => {
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then((user) => onLogin(user));
+        }
+        else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
   }
 console.log(onLogin)
   return (
@@ -91,12 +92,12 @@ console.log(onLogin)
         />
       </FormField>
       <FormField>
-        <Label htmlFor="imageUrl">Profile Image</Label>
+        <Label htmlFor="avatar">Profile Image</Label>
         <Input
           type="text"
-          id="imageUrl"
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
+          id="avatar"
+          value={avatar}
+          onChange={(e) => avatar.current = (e.target.value)}
         />
       </FormField>
       <FormField>

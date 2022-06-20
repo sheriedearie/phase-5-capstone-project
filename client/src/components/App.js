@@ -9,7 +9,7 @@ import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
 import ProductContainer from "../pages/ProductContainer";
-
+import Cart from '../pages/Cart'
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -39,6 +39,9 @@ function App() {
             </Route>
             <Route path="/products">
               <ProductContainer/>
+            </Route>
+            <Route path="/cart">
+              <Cart/>
             </Route>
             <Route path="/signin">
               <Login />
