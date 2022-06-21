@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 const ReviewContainer = () => {
     const [reviews, setReviews] = useState(null);
 
-
     useEffect(() => {
         fetch("/api/reviews").then((r) => r.json()).then(
             reviews => {

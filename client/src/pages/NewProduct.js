@@ -24,7 +24,6 @@ function NewProduct() {
     fetch("/api/products", {
       method: "POST",
       body: formData
-      
 
     }).then((r) => {
       setIsLoading(false);

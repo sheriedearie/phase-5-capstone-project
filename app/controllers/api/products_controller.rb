@@ -1,6 +1,6 @@
 class Api::ProductsController < ApplicationController
     # before_action :check_admin!, except: [:index, :show]
-    skip_before_action :authorize, only: [:index]
+    # skip_before_action :authorize, only: [:index]
 
     def index
         render json: current_user.products
@@ -10,6 +10,11 @@ class Api::ProductsController < ApplicationController
         product = current_user.products.create!(product_params)
           render json: product, status: :created
       end
+    
+    def destroy
+        product = Product.find_by!(id: params[:id])
+        product.delete
+    end
 
 private
 

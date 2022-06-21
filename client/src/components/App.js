@@ -14,7 +14,6 @@ import ReviewContainer from "../pages/ReviewContainer";
 function App() {
   const { user, setUser } = useContext(UserContext);
 
-
   useEffect(() => {
     fetch("/api/me").then((r) => {
       if (r.ok) {
@@ -63,6 +62,5 @@ function App() {
     );
   }
 }
-
 
 export default App;

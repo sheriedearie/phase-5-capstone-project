@@ -23,7 +23,6 @@ const NewReview = () => {
             method: "POST",
             body: formData
 
-
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {

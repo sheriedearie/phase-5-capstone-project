@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 
-const ReviewCart = ({ review }) => {
+const ReviewCard = ({ review }) => {
     console.log("this is the review cart")
     console.log(review)
   return (
@@ -22,4 +22,4 @@ const ReviewCart = ({ review }) => {
   )
 }
 
-export default ReviewCart
+export default ReviewCard
