@@ -5,9 +5,10 @@ import React from 'react';
 
 
 const ProductCard = ({ product }) => {
-    // console.log(product.name
+
     console.log("this is the product card")
     console.log(product)
+
     return (
         <Card className="card" elevation={0}>
 

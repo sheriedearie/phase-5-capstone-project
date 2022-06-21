@@ -31,9 +31,9 @@ function ReviewList() {
         ))
       ) : (
         <>
-          <h2>No Recipes Found</h2>
+          <h2>No Reviews Found</h2>
           <Button as={Link} to="/new">
-            Make a New Recipe
+            Make a New Review
           </Button>
         </>
       )}

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
 function NewProduct() {
-  // const [userId, setUserId] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,7 +17,6 @@ function NewProduct() {
     e.preventDefault();
     setIsLoading(true);
     const formData = new FormData(e.target)
-    // formData.append("name", name)
     formData.append("name", name)
     formData.append("price", price)
     formData.append("photo", photo)

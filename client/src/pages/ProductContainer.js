@@ -6,8 +6,7 @@ const ProductContainer = () => {
     const [products, setProducts] = useState(null);
     useEffect(() => {
         fetch("/api/products").then((r) => r.json()).then(
-            prods => 
-            {
+            prods => {
                 console.log("HERE ARE THE PRODUCTS(Container)")
                 console.log(prods)
                 setProducts(prods);
