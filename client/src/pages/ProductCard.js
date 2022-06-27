@@ -10,22 +10,22 @@ const ProductCard = ({ product }) => {
     console.log(product)
 
     return (
-        <Card className="card" elevation={0}>
+        <div className="card" elevation={0}>
 
-            <CardContent align="center">
+            <div align="center">
                 {/* <img src={photo === null ? "" : photo.url} alt="" /> */}
-                <Typography variant="h5" component="h3" color="secondary">
+                <h1 variant="h5" component="h3" color="secondary">
                     Name: {product.name}
-                </Typography>
-                <Typography variant="h5" component="h3" color="secondary">
-                    Price: {product.price}
-                </Typography>
-                <Typography variant="h5" component="h3" color="secondary">
-                    Creator: {product.user}
-                </Typography>
-            </CardContent>
+                </h1>
+                <h1 variant="h5" component="h3" color="secondary">
+                    Price: ${product.price}
+                </h1>
+                <h1 variant="h5" component="h3" color="secondary">
+                    Creator: {product.user.name}
+                </h1>
+            </div>
 
-        </Card>
+        </div>
     )
 }
 

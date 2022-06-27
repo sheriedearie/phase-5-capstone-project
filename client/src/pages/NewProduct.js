@@ -19,7 +19,10 @@ function NewProduct() {
     const formData = new FormData(e.target)
     formData.append("name", name)
     formData.append("price", price)
-    formData.append("photo", photo)
+    // formData.append("photo", photo)
+    for (let el of formData.values()) {
+      console.log(el)
+    }
 
     fetch("/api/products", {
       method: "POST",

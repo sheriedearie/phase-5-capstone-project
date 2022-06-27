@@ -1,13 +1,14 @@
 import ProductCard from './ProductCard'
 
-const ProductList = ( {products} ) => {
-     console.log("this is the product list")
-     console.log(products)
+const ProductList = ({ prods }) => {
+
+  console.log("PRODUCT LIST")
+  console.log(prods)
+
   return (
     <div>
-        {products?.map((product) => (<ProductCard key={product.id} product={product} />))
-        }
-      </div>
+      {prods?.map(product => <ProductCard product={product} />)}
+    </div>
   )
 }
 

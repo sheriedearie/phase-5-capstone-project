@@ -3,7 +3,7 @@ class Api::ProductsController < ApplicationController
     # skip_before_action :authorize, only: [:index]
 
     def index
-        render json: current_user.products
+        render json: Product.all
     end
 
     def create
@@ -19,7 +19,7 @@ class Api::ProductsController < ApplicationController
 private
 
     def product_params
-    params.permit(:name, :user_id, :photo, :price)
+    params.permit(:name, :user_id, :price)
     end
 
     # def check_admin!

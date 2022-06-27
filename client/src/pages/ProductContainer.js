@@ -3,20 +3,28 @@ import React, { useState, useEffect } from "react";
 
 
 const ProductContainer = () => {
-    const [products, setProducts] = useState(null);
+    const [products, setProducts] = useState([]);
+
+    console.log("these are the products")
+    console.log(products)
+
     useEffect(() => {
-        fetch("/api/products").then((r) => r.json()).then(
-            products => {
-                console.log("HERE ARE THE PRODUCTS(Container)")
-                console.log(products)
-                // setProducts(products);
-            })
+        fetch("/api/products")
+            .then((r) => r.json())
+            .then(prods => {
+                console.log("PRODUCTS AGAIN")
+                console.log(prods)
+                setProducts(prods)
+                console.log("PRODUCTS SET")
+            }
+                )
+            .catch(err => alert(err))
     }, []);
 
     return (
         <div>
-            <h1>"these are the available products"</h1>
-            <ProductList products={products} />
+            <h1>Products to Purchase</h1>
+            <ProductList prods={products} />
         </div>
     )
 }

@@ -5,17 +5,15 @@ const ReviewContainer = () => {
     const [reviews, setReviews] = useState(null);
 
     useEffect(() => {
-        fetch("/api/reviews").then((r) => r.json()).then(
-            reviews => {
-                console.log("Here are the reviews")
-                console.log(reviews)
-                setReviews(reviews);
-            })
+        fetch("/api/reviews")
+        .then((r) => r.json())
+        .then(reviews => setReviews(reviews))
+        .catch(err => alert(err))
     }, []);
 
     return (
         <>
-            <div>Here are your reviews</div>
+            <h1>Here are your reviews</h1>
             <ReviewList reviews={reviews} />
         </>
     )

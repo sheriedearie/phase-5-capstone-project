@@ -97,7 +97,8 @@ console.log(onLogin)
         <Input
           type="file"
           id="avatar"
-          value={avatar}
+          ref={avatar}
+          // value={avatar.current}
           onChange={(e) => avatar.current = (e.target.value)}
         />
       </FormField>
