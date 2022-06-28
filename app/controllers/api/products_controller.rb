@@ -19,8 +19,8 @@ class Api::ProductsController < ApplicationController
 private
 
     def product_params
-    params.permit(:name, :user_id, :price, :photo)
-    end
+        params.permit(:name, :user_id, :price)#, :photo)
+        end
 
     # def check_admin!
     #     render json: { errors: ["Not authorized"]}, status: :unauthorized unless @current_user.admin?

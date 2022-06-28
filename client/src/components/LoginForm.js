@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 
 import { Button, Error, Input, FormField, Label } from "../styles";
@@ -9,6 +9,23 @@ function LoginForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+
+  function handleCallbackResponse(response){
+    console.log("Encoded JWT ID token:" + response.credential)
+  }
+
+  useEffect(() => {
+    /*global google*/
+    google.accounts.id.initialize({
+      client_id: "1033425165287-n58hde6vdv6s4s0it1jme74qee404ghk.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    })
+    // debugger;
+    google.accounts.id.renderButton(
+      document.getElementById("signInDiv"),
+      {theme: "outline", size: "medium"}
+    );
+  }, []);
 
 
   function handleSubmit(e) {
@@ -54,6 +71,8 @@ function LoginForm({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
         />
       </FormField>
+      <div id="signInDiv">
+      </div>
       <FormField>
         <Button variant="fill" color="primary" type="submit">
           {isLoading ? "Loading..." : "Login"}

@@ -2,6 +2,8 @@ require "pry"
 
 class ApplicationController < ActionController::API
   include ActionController::Cookies
+
+  # include ActiveStorage::Blob::Analyzable
   
   rescue_from ActiveRecord::RecordInvalid, with: :not_processed
 

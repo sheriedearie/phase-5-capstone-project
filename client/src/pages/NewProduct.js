@@ -19,7 +19,7 @@ function NewProduct() {
     const formData = new FormData(e.target)
     formData.append("name", name)
     formData.append("price", price)
-    // formData.append("photo", photo)
+    console.log("FORM DATA")
     for (let el of formData.values()) {
       console.log(el)
     }
