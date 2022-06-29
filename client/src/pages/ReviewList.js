@@ -6,19 +6,19 @@ import ReviewCard from './ReviewCard'
 
 function ReviewList() {
   const [reviews, setReviews] = useState([]);
-
+console.log("these are the reviews" + reviews)
   return (
     <Wrapper>
       <Box>
         {reviews.length > 0 ? (
-          reviews.map((reviews) => (
+          reviews?.map((reviews) => (
             <ReviewCard key={reviews.id} reviews={reviews} />
           
       ))
       ) : (
       <>
         <h2>No Reviews Found</h2>
-        <Button as={Link} to="/new">
+        <Button as={Link} to="/reviews/new">
           Make a New Review
         </Button>
 

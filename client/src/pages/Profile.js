@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { UserContext } from '../components/User'
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
-import ProductList from './ProductList';
+import ProductContainer from './ProductContainer';
+import ReviewContainer from './ReviewContainer';
 
 
 function Profile() {
@@ -31,7 +32,10 @@ function Profile() {
 
       {/* </CardContent>
       </Card> */}
-      <ProductList />
+
+      {/* need to only show that person's products and reviews */}
+      <ProductContainer />
+      <ReviewContainer />
     </div>
   );
 }

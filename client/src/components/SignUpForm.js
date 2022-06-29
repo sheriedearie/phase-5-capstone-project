@@ -106,7 +106,7 @@ console.log(onLogin)
         <Button type="submit">{isLoading ? "Loading..." : "Sign Up"}</Button>
       </FormField>
       <FormField>
-        {errors.map((err) => (
+        {errors?.map((err) => (
           <Error key={err}>{err}</Error>
         ))}
       </FormField>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const ReviewContainer = () => {
     const [reviews, setReviews] = useState(null);
+    console.log(reviews)
 
     useEffect(() => {
         fetch("/api/reviews")
@@ -13,7 +14,7 @@ const ReviewContainer = () => {
 
     return (
         <>
-            <h1>Here are your reviews</h1>
+            <h1>Reviews</h1>
             <ReviewList reviews={reviews} />
         </>
     )

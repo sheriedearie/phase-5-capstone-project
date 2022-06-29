@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :reviews, through: :purchases
   has_many :products
   has_one_attached :avatar, dependent: :destroy
+  has_one :cart
 
   has_secure_password
 

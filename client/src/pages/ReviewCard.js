@@ -14,7 +14,7 @@ const ReviewCard = ({ review, product }) => {
   const [reviewID] = useState(review?.id);
   const itemDeletedEvent = new Event("ItemDeleted")
 
-  console.log("this is the review cart")
+  console.log("this is the review card")
   console.log(review)
 
   function deleteReview() {
