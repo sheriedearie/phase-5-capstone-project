@@ -38,5 +38,6 @@ group :test do
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+gem "active_storage_validations"
 
-# gem "image_processing", "~> 1.0"
+gem "image_processing", "~> 1.0"

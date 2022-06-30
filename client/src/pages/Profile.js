@@ -34,7 +34,7 @@ function Profile() {
       </Card> */}
 
       {/* need to only show that person's products and reviews */}
-      <ProductContainer />
+      {/* <ProductContainer /> */}
       <ReviewContainer />
     </div>
   );

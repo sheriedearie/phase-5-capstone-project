@@ -39,7 +39,7 @@ const Cart = ({ products }) => {
                 <Box>
                     {/* <div>{current_user.cart.products}</div> */}
 
-                    {/* map through the products and then onclick destory the product object... combine based on the product and cart id */}
+                    {/* map through the products and then onclick destory the product object... combine based on the product_id and cart_id */}
                     <div>
                         {cart.length === 0 && <h1> Cart is Empty</h1>}
                     </div>

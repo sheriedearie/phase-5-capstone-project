@@ -1,5 +1,6 @@
 class ProductSerializer < ActiveModel::Serializer
     attributes :id, :user, :price, :name, :photo
+    has_many :buyers, serializer: UserSerializer
     include Rails.application.routes.url_helpers
 
     def photo

@@ -11,6 +11,7 @@ import ProductContainer from "../pages/ProductContainer";
 import Cart from '../pages/Cart'
 import ReviewContainer from "../pages/ReviewContainer";
 import NewReview from '../pages/NewReview';
+import EditProduct from "../pages/EditProduct";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/products">
             <ProductContainer />
+          </Route>
+          <Route path="/products/id">
+            <EditProduct />
           </Route>
           <Route path="/reviews">
             <ReviewContainer />
