@@ -23,17 +23,18 @@ function ReviewList({ reviews }) {
       console.log("these are the reviews" + reviews)
     }
   }, [])
+  const finalReviewList = reviews ? reviews : reviewList
+const renderReview = finalReviewList?.map(review => <ReviewCard key={review.id} review={review} />)
 
-    
   return (
     <Wrapper>
       <Box>
         {reviews > 0 ? (
-          reviews?.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+          <div>{renderReview}</div>
+          // reviews?.map((review) => (
+          //   <ReviewCard key={review.id} review={review} />
 
-          ))
-        ) : (
+          ) : (
           <>
             <h2>No Reviews Found</h2>
             <Button as={Link} to="/reviews/new">
