@@ -6,35 +6,38 @@ import ReviewCard from './ReviewCard'
 
 function ReviewList({ reviews }) {
   const [reviewList, setReviewList] = useState([]);
-  
+
   useEffect(() => {
     if (!reviews) {
       fetch("/api/reviews")
-      .then((r) => {
-        if (r.status === 200) {
-          r.json()
-          .then((reviews) => setReviewList(reviews))
-        } else {
-          r.json()
-          .then((err) => alert(err.errors))
-        }
-      })
-      .catch((err) => alert(err.errors))
-      console.log("these are the reviews" + reviews)
+        .then((r) => {
+          if (r.status === 200) {
+            r.json()
+              .then((reviews) => setReviewList(reviews))
+          } else {
+            r.json()
+              .then((err) => alert(err.errors))
+          }
+        })
+        .catch((err) => alert(err.errors))
+      console.log("these are the reviewslist" + reviews)
     }
   }, [])
+
   const finalReviewList = reviews ? reviews : reviewList
-const renderReview = finalReviewList?.map(review => <ReviewCard key={review.id} review={review} />)
+  const renderReview = finalReviewList?.map(review => {
+    return <ReviewCard key={review.id} review={review} />
+  });
 
   return (
     <Wrapper>
+      <Button as={Link} to="/reviews/new">
+              Make a New Review
+            </Button>
       <Box>
-        {reviews > 0 ? (
+        {reviews?.length > 0 ? (
           <div>{renderReview}</div>
-          // reviews?.map((review) => (
-          //   <ReviewCard key={review.id} review={review} />
-
-          ) : (
+        ) : (
           <>
             <h2>No Reviews Found</h2>
             <Button as={Link} to="/reviews/new">

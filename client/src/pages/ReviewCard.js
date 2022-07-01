@@ -28,17 +28,15 @@ const ReviewCard = ({ review, product }) => {
     }).then((r) => {
       if (r.ok) {
         setUser(review)
-         history.push('/reviews');
-        
-         } else {
+        history.push('/reviews');
+
+      } else {
         r.json().then((err) => setErrors(err.erros));
       }
     });
   }
-    console.log("this is the review card" + review)
+  console.log("this is the review card" + review)
 
-
-  console.log(review?.rating)
 
   return (
     <div className="card" elevation={0} key={review?.id}>
@@ -55,8 +53,8 @@ const ReviewCard = ({ review, product }) => {
         <Button>Update Comment</Button>
       </div>
       <Button onClick={deleteReview} variant="fill" color="primary" type="submit">
-      {isLoading ? "Deleting..." : "Delete"}
-    </Button>
+        {isLoading ? "Deleting..." : "Delete"}
+      </Button>
     </div>
   )
 }

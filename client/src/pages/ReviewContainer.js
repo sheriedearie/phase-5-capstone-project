@@ -8,9 +8,9 @@ const ReviewContainer = () => {
 
     useEffect(() => {
         fetch("/api/reviews")
-        .then((r) => r.json())
-        .then(reviews => setReviews(reviews))
-        .catch(err => alert(err))
+            .then((r) => r.json())
+            .then(reviews => setReviews(reviews))
+            .catch(err => alert(err))
     }, []);
 
     return (
