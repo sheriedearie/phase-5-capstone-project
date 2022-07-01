@@ -15,6 +15,12 @@ class Api::ProductsController < ApplicationController
         product = Product.find_by!(id: params[:id])
         product.delete
     end
+    
+    def update
+        product = Product.find_by!(id: params[:id])
+        product.update!(name: params[:name], price: params[:price])
+        render json: product
+      end
 
 private
 

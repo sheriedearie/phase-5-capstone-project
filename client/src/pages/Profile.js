@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { UserContext } from '../components/User'
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
-import ProductContainer from './ProductContainer';
+// import ProductContainer from './ProductContainer';
 import ReviewContainer from './ReviewContainer';
 
 
@@ -19,22 +19,10 @@ function Profile() {
   console.log("this is the end of the profile")
 
   return (
-    <div>
+    <div className="card" elevation={0}>
 
       <h2>Welcome back {user.name}!</h2>
-      {/* avatar of the user is not working  */}
-
-      {/* <Card className="card" elevation={0}>
-
-        <CardContent align="center"> */}
-
       <img src={avatarURL} alt="avatar" />
-
-      {/* </CardContent>
-      </Card> */}
-
-      {/* need to only show that person's products and reviews */}
-      {/* <ProductContainer /> */}
       <ReviewContainer />
     </div>
   );

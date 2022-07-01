@@ -13,6 +13,12 @@ class Api::ReviewsController < ApplicationController
         reviews.delete
     end
 
+    def update
+        review = Review.find_by!(id: params[:id])
+        review.update!(rating: params[:rating], comment: params[:comment])
+        render json: review
+      end
+
 private
 
     def review_params
