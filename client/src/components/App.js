@@ -9,9 +9,10 @@ import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
 import ProductContainer from "../pages/ProductContainer";
 import Cart from '../pages/Cart'
-import ReviewContainer from "../pages/ReviewContainer";
+// import ReviewCard from "../pages/ReviewCard";
 import NewReview from '../pages/NewReview';
 import EditProduct from "../pages/EditProduct";
+import ReviewContainer from "../pages/ReviewContainer";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -42,7 +43,7 @@ function App() {
             <EditProduct />
           </Route>
           <Route path="/reviews">
-            <ReviewContainer />
+            <ReviewContainer/>
           </Route>
           <Route path="/reviews/new">
             <NewReview />

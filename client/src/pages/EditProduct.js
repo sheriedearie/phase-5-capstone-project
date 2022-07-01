@@ -26,11 +26,11 @@ function EditProduct({ productObj, handleUpdate }) {
     function handleSubmit(e) {
         e.preventDefault();
         if (
-            [products.name, products.price, products.user.name].some((val) => val.trim() === '')
+            [products.name, products.price]
         ) { alert('All information must be filled out!') }
         setIsLoading(true);
     
-        fetch(`/api/products${productObj.id}`, {
+        fetch(`/api/products${products.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': "application/json",
@@ -73,7 +73,7 @@ function EditProduct({ productObj, handleUpdate }) {
                         <Input
                             type="text"
                             id="name"
-                            value={name}
+                            value={products.name}
                             onChange={handleChange}
                         />
                     </FormField>
@@ -82,7 +82,7 @@ function EditProduct({ productObj, handleUpdate }) {
                         <Input
                             type="number"
                             id="price"
-                            value={price}
+                            value={products.price}
                             onChange={handleChange}
                         />
                     </FormField>

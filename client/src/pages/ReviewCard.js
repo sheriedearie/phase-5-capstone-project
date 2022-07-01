@@ -1,21 +1,23 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import Typography from '@mui/material/Typography';
 import { Button, Input } from "../styles";
 import React, { useState, useContext } from "react";
 import { UserContext } from '../components/User';
+import { useHistory } from 'react-router-dom';
+
 
 
 const ReviewCard = ({ review, product }) => {
-  const [comment, setComment] = useState(product.comments);
+  const [comment, setComment] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const { user, setUser } = useContext(UserContext);
   const [reviewID] = useState(review?.id);
-  const itemDeletedEvent = new Event("ItemDeleted")
+  const itemDeletedEvent = new Event("ItemDeleted");
+  const history = useHistory();
 
-  console.log("this is the review card")
-  console.log(review)
+
 
   function deleteReview() {
     setErrors([]);
@@ -25,53 +27,39 @@ const ReviewCard = ({ review, product }) => {
       method: 'delete'
     }).then((r) => {
       if (r.ok) {
-        setUser(currentUser => {
-          const newReviews = currentUser.reviews.filter((review) => {
-            const otherId = review.id || review.review?.id
-            const different = reviewID !== otherId
-            console.log("Comparing " + reviewID + " to " + otherId)
-            return different;
-          });
-          return { ...currentUser, reviews: newReviews }
-        })
-      }
-      else {
+        setUser(review)
+         history.push('/reviews');
+        
+         } else {
         r.json().then((err) => setErrors(err.erros));
       }
     });
-
-    const deleteButton = document.querySelector(`#deleteBtn${reviewID}`)
-    deleteButton.textContent = "DELETING...";
-    document.dispatchEvent(itemDeletedEvent)
   }
-  
-    return (
-      <Card className="card" elevation={0}>
-
-        <CardContent align="center">
-          <Typography variant="h5" component="h3" color="secondary">
-            Rating: {review.rating}
-          </Typography>
-          <Typography variant="h5" component="h3" color="secondary">
-            comment: <Input
-              type="text"
-              id="comments"
-              autoComplete="off"
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-          </Typography>
-          <Button>Update Comment</Button>
-        </CardContent>
-        <Button id={`deleteBtn${reviewID}`} onClick={deleteReview}>Delete Review</Button>
-      </Card>
-    )
-    {/* <Button as={Link} to={{
-            pathname: '/appointments/new', state: {
-              walkerName: name, walkerId: id
-            }
-          }}> Create Appointment With This Walker </Button> */}
-  }
+    console.log("this is the review card" + review)
 
 
-  export default ReviewCard
+  console.log(review?.rating)
+
+  return (
+    <div className="card" elevation={0} key={review?.id}>
+      <div align="center">
+        <h1 variant="h5" component="h3" color="secondary">
+          Rating: {review?.rating}
+        </h1>
+        <h1 variant="h5" component="h3" color="secondary">
+          comment: {review?.comment}
+        </h1>
+        <h1 variant="h5" component="h3" color="secondary">
+          Creator: {review?.buyer}
+        </h1>
+        <Button>Update Comment</Button>
+      </div>
+      <Button onClick={deleteReview} variant="fill" color="primary" type="submit">
+      {isLoading ? "Deleting..." : "Delete"}
+    </Button>
+    </div>
+  )
+}
+
+
+export default ReviewCard

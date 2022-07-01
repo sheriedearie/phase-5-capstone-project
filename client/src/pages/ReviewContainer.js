@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 
 const ReviewContainer = () => {
     const [reviews, setReviews] = useState(null);
+    console.log("this is a review container")
     console.log(reviews)
 
     useEffect(() => {

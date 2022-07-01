@@ -10,22 +10,22 @@ function LoginForm({ onLogin }) {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  function handleCallbackResponse(response){
-    console.log("Encoded JWT ID token:" + response.credential)
-  }
+  // function handleCallbackResponse(response){
+  //   console.log("Encoded JWT ID token:" + response.credential)
+  // }
 
-  useEffect(() => {
-    /*global google*/
-    google.accounts.id.initialize({
-      client_id: "1033425165287-n58hde6vdv6s4s0it1jme74qee404ghk.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    })
-    // debugger;
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      {theme: "outline", size: "medium"}
-    );
-  }, []);
+  // useEffect(() => {
+  //   /*global google*/
+  //   google.accounts.id.initialize({
+  //     client_id: "1033425165287-n58hde6vdv6s4s0it1jme74qee404ghk.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse
+  //   })
+  //   // debugger;
+  //   google.accounts.id.renderButton(
+  //     document.getElementById("signInDiv"),
+  //     {theme: "outline", size: "medium"}
+  //   );
+  // }, []);
 
 
   function handleSubmit(e) {

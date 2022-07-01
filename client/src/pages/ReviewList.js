@@ -1,29 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewCard from './ReviewCard'
 
-function ReviewList() {
-  const [reviews, setReviews] = useState([]);
-console.log("these are the reviews" + reviews)
+function ReviewList({ reviews }) {
+  const [reviewList, setReviewList] = useState([]);
+  
+  useEffect(() => {
+    if (!reviews) {
+      fetch("/api/reviews")
+      .then((r) => {
+        if (r.status === 200) {
+          r.json()
+          .then((reviews) => setReviewList(reviews))
+        } else {
+          r.json()
+          .then((err) => alert(err.errors))
+        }
+      })
+      .catch((err) => alert(err.errors))
+      console.log("these are the reviews" + reviews)
+    }
+  }, [])
+
+    
   return (
     <Wrapper>
       <Box>
-        {reviews.length > 0 ? (
-          reviews?.map((reviews) => (
-            <ReviewCard key={reviews.id} reviews={reviews} />
-          
-      ))
-      ) : (
-      <>
-        <h2>No Reviews Found</h2>
-        <Button as={Link} to="/reviews/new">
-          Make a New Review
-        </Button>
+        {reviews > 0 ? (
+          reviews?.map((review) => (
+            <ReviewCard key={review.id} review={review} />
 
-      </>
-      )}
+          ))
+        ) : (
+          <>
+            <h2>No Reviews Found</h2>
+            <Button as={Link} to="/reviews/new">
+              Make a New Review
+            </Button>
+
+          </>
+        )}
       </Box>
     </Wrapper>
   );
