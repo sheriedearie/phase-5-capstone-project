@@ -14,7 +14,6 @@ const ReviewCard = ({ review, product }) => {
   const [errors, setErrors] = useState([]);
   const { user, setUser } = useContext(UserContext);
   const [reviewID] = useState(review?.id);
-  const itemDeletedEvent = new Event("ItemDeleted");
   const history = useHistory();
 
 
@@ -35,22 +34,25 @@ const ReviewCard = ({ review, product }) => {
       }
     });
   }
-  console.log("this is the review card" + review)
+  console.log("this is the review card" + review?.product)
 
-
+console.log(review?.product)
   return (
     <div className="card" elevation={0} key={review?.id}>
       <div align="center">
+        <h1 variant="h5" component="h3" color="secondary">
+          Product: {review?.product}
+        </h1>
         <h1 variant="h5" component="h3" color="secondary">
           Rating: {review?.rating}
         </h1>
         <h1 variant="h5" component="h3" color="secondary">
           comment: {review?.comment}
         </h1>
+        <Button>Update Comment</Button>
         <h1 variant="h5" component="h3" color="secondary">
           Creator: {review?.buyer}
         </h1>
-        <Button>Update Comment</Button>
       </div>
       <Button onClick={deleteReview} variant="fill" color="primary" type="submit">
         {isLoading ? "Deleting..." : "Delete"}

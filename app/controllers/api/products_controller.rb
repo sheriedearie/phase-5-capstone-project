@@ -1,6 +1,6 @@
 class Api::ProductsController < ApplicationController
     # before_action :check_admin!, except: [:index, :show]
-    # skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: [:index, :create, :destroy, :update]
 
     def index
         render json: Product.all

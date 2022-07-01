@@ -10,7 +10,7 @@ import Profile from "../pages/Profile";
 import ProductContainer from "../pages/ProductContainer";
 import Cart from '../pages/Cart'
 import NewReview from '../pages/NewReview';
-import EditProduct from "../pages/EditProduct";
+import ProductCard from "../pages/ProductCard";
 import ReviewContainer from "../pages/ReviewContainer";
 
 function App() {
@@ -38,8 +38,8 @@ function App() {
           <Route path="/products">
             <ProductContainer />
           </Route>
-          <Route path="/products/id">
-            <EditProduct />
+          <Route path="/products/:productID">
+            <ProductCard />
           </Route>
           <Route path="/reviews">
             <ReviewContainer />

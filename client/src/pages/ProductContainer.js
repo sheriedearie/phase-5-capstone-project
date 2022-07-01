@@ -5,19 +5,18 @@ import React, { useState, useEffect } from "react";
 const ProductContainer = () => {
     const [products, setProducts] = useState([]);
 
-    console.log("these are the products")
+    console.log("products container")
     console.log(products)
 
     useEffect(() => {
         fetch("/api/products")
             .then((r) => r.json())
             .then(prods => {
-                console.log("PRODUCTS AGAIN")
-                console.log(prods)
                 setProducts(prods)
                 console.log("PRODUCTS SET")
+                console.log(prods)
             }
-                )
+            )
             .catch(err => alert(err))
     }, []);
 

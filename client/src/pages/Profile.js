@@ -23,7 +23,7 @@ function Profile() {
 
       <h2>Welcome back {user.name}!</h2>
       <img src={avatarURL} alt="avatar" />
-      <ReviewContainer />
+      {/* <ReviewContainer /> */}
     </div>
   );
 }
