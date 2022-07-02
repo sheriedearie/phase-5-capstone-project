@@ -2,8 +2,6 @@ require "pry"
 
 class ApplicationController < ActionController::API
   include ActionController::Cookies
-
-  # include ActiveStorage::Blob::Analyzable
   
   rescue_from ActiveRecord::RecordInvalid, with: :not_processed
 
@@ -22,6 +20,7 @@ class ApplicationController < ActionController::API
   end 
 
   def not_found(exception)
+    binding.pry
     render json: { errors: ["#{exception.model} not found"]}, status: :not_found
    end
 

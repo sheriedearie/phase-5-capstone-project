@@ -1,17 +1,19 @@
 import ProductCard from './ProductCard'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
-const ProductList = ({ prods }) => {
+const ProductList = ({ prods, deleteProd}) => {
   const [productList, setProductList] = useState([]);
 
+  console.log("PRODUCT LIST DELETE FUNCTION")
+  console.log(deleteProd.name)
 
   console.log("PRODUCT LIST")
   console.log(prods)
   
   const finalProductList = prods ? prods : productList
   const renderProduct = finalProductList?.map(product => {
-    return <ProductCard key={product?.id} prods={product} />
+    return <ProductCard key={product?.id} prod={product} onDelete={deleteProd} />
   });
 
   console.log("These are the prods from the product list" + prods)

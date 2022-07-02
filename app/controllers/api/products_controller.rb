@@ -12,20 +12,21 @@ class Api::ProductsController < ApplicationController
       end
     
     def destroy
+        # binding.pry
         product = Product.find_by!(id: params[:id])
         product.delete
     end
     
     def update
         product = Product.find_by!(id: params[:id])
-        product.update!(name: params[:name], price: params[:price])
+        product.update!(product_params)
         render json: product
       end
 
 private
 
     def product_params
-        params.permit(:name, :user_id, :price, :photo)
+        params.permit(:name, :price, :photo)
         end
 
     # def check_admin!

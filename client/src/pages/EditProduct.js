@@ -1,45 +1,45 @@
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-function EditProduct({ productObj, handleUpdate }) {
-    const [products, setProducts] = useState([]);
+function EditProduct({ productObj, updateProduct }) {
+    const [product, setProduct] = useState({
+    name: productObj.name,
+    price: productObj.price
+    });
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
-    const [productID] = useState(products?.id);
-
     
     console.log("here is where to edit the product")
-    console.log(products)
+    console.log(product)
 
 
     const handleChange = (e) => {
-        setProducts({
-            ...products, [e.target.name]: e.target.value,
+        setProduct({
+            ...product, [e.target.name]: e.target.value,
         })
     }
 
+    console.log("this is the productId in the edit product" + productObj.id)
     function handleSubmit(e) {
         e.preventDefault();
-        if (
-            [products.name, products.price]
-        ) { alert('All information must be filled out!') }
         setIsLoading(true);
     
-        fetch(`/api/products${products.id}`, {
+        fetch(`/api/products/${productObj.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': "application/json",
             },
-            body: JSON.stringify(products.name, products.price)
+            body: JSON.stringify({name: product.name, price: product.price})
         }).then((r) => {
+            console.log(product.name)
             setIsLoading(false);
             if (r.ok) {
-                r.json().then(data => handleUpdate(data))
+                r.json().then(data => updateProduct(data))
                 history.push("/products");
             } else {
                 r.json().then((err) => setErrors(err.errors));
@@ -47,21 +47,6 @@ function EditProduct({ productObj, handleUpdate }) {
         })
             .catch((err) => alert(err.errors))
     }
-
-    fetch(`/api/products/${productID}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(name, price),
-    }).then((r) => {
-        if (r.ok) {
-            setProducts(products)
-        }
-        else {
-            r.json().then((err) => setErrors(err.erros));
-        }
-    });
 
     return (
         <Wrapper>
@@ -72,8 +57,9 @@ function EditProduct({ productObj, handleUpdate }) {
                         <Label htmlFor="name">Name: </Label>
                         <Input
                             type="text"
+                            name="name"
                             id="name"
-                            value={products.name}
+                            value={product.name}
                             onChange={handleChange}
                         />
                     </FormField>
@@ -81,8 +67,9 @@ function EditProduct({ productObj, handleUpdate }) {
                         <Label htmlFor="price">Price: </Label>
                         <Input
                             type="number"
+                            name="price"
                             id="price"
-                            value={products.price}
+                            value={product.price}
                             onChange={handleChange}
                         />
                     </FormField>
