@@ -9,11 +9,8 @@ import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
 import ProductContainer from "../pages/ProductContainer";
 import Cart from '../pages/Cart'
-import NewReview from '../pages/NewReview';
-import ProductCard from "../pages/ProductCard";
 import ReviewContainer from "../pages/ReviewContainer";
-import EditProduct from "../pages/EditProduct";
-import EditReview from "../pages/EditReview";
+import NewReview from '../pages/NewReview';
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -34,26 +31,17 @@ function App() {
       <>
         <NavBar user={user} setUser={setUser} />
         <Switch>
-          <Route path="/product/new">
+          <Route path="/products/new">
             <NewProduct />
           </Route>
           <Route path="/products">
             <ProductContainer />
           </Route>
-          <Route path="/products/:productID">
-            <ProductCard />
-          </Route>
-          <Route path="/products/edit">
-            <EditProduct />
           <Route path="/reviews/new">
             <NewReview />
           </Route>
-          </Route>
           <Route path="/reviews">
             <ReviewContainer />
-          </Route>
-          <Route path="/reviews/edit">
-            <EditReview />
           </Route>
           <Route path="/cart">
             <Cart />

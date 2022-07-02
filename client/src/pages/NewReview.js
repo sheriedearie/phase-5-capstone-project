@@ -1,6 +1,6 @@
 import { useState, useContext, useRef } from "react";
 import { UserContext } from "../components/User";
-import { useHistory } from "react-router";
+import { useHistory, Redirect, useLocation } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
@@ -13,6 +13,9 @@ const NewReview = () => {
     const history = useHistory();
     const { setUser } = useContext(UserContext);
     const photo = useRef(null);
+    const location = useLocation();
+    const locationState = location.state
+
 
 
     function handleSubmit(e) {
@@ -28,8 +31,12 @@ const NewReview = () => {
 
         fetch("/api/reviews", {
             method: "POST",
-            body: formData
-
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              rating: rating,
+              product: locationState.product,
+              comment: comment
+            }),
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
@@ -42,22 +49,14 @@ const NewReview = () => {
             }
         });
     }
+if (!locationState?.product.name) return <Redirect to='/products'/>
 
     return (
         <Wrapper>
             <WrapperChild>
-                <h2>Please fill out the form to add a new product</h2>
+                <h2>Add a new review for the{locationState.product}</h2>
                 <form onSubmit={handleSubmit}>
-                    <FormField>
-                        <Label htmlFor="mediaUrl">Product: </Label>
-                        <Input
-                            type="file"
-                            name="photo"
-                            ref={photo}
-                            onChange={(e) => photo.current = (e.target.value)}
-                        />
-                    </FormField>
-                    <FormField>
+                                        <FormField>
                         <Label htmlFor="product">Product: </Label>
                         <Input
                             type="text"

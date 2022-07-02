@@ -7,7 +7,7 @@ import { useHistory, Link, useLocation } from 'react-router-dom';
 import EditProduct from "./EditProduct";
 
 
-const ProductCard = ({ prod, onDelete }) => {
+const ProductCard = ({ prod, onDelete, onAdd }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [productObj, setProductObj] = useState(prod);
@@ -15,7 +15,7 @@ const ProductCard = ({ prod, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const location = useLocation()
 
-  
+
 
   console.log("DELETE FUNCTION")
   console.log(onDelete.name);
@@ -52,6 +52,12 @@ const ProductCard = ({ prod, onDelete }) => {
     onDelete(prod.id)
     history.push('/products');
   };
+
+  function addToCart() {
+    onAdd(prod.id)
+    history.push('/cart');
+  };
+
 
   return (
     <div className="card" elevation={0}>
@@ -94,7 +100,9 @@ const ProductCard = ({ prod, onDelete }) => {
 
       }
 
-      <Button>Add to Cart</Button>
+      <Button onClick={addToCart} variant="fill" color="primary" type="submit">
+        {isLoading ? "Adding..." : "Add to Cart"}
+      </Button>
 
     </div>
 

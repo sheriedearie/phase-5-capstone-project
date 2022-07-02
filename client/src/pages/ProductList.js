@@ -2,7 +2,7 @@ import ProductCard from './ProductCard'
 import { useState } from "react";
 
 
-const ProductList = ({ prods, deleteProd}) => {
+const ProductList = ({ prods, deleteProd, addToCart}) => {
   const [productList, setProductList] = useState([]);
 
   console.log("PRODUCT LIST DELETE FUNCTION")
@@ -13,7 +13,7 @@ const ProductList = ({ prods, deleteProd}) => {
   
   const finalProductList = prods ? prods : productList
   const renderProduct = finalProductList?.map(product => {
-    return <ProductCard key={product?.id} prod={product} onDelete={deleteProd} />
+    return <ProductCard key={product?.id} prod={product} onDelete={deleteProd} onAdd={addToCart}/>
   });
 
   console.log("These are the prods from the product list" + prods)
