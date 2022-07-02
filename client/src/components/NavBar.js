@@ -21,7 +21,7 @@ function NavBar({ user, setUser }) {
       <Button as={Link} to="/profile">
           Profile
         </Button>
-        <Button as={Link} to="/product/new">
+        <Button as={Link} to="/products/new">
           Create A New Product
         </Button>
         <Button as={Link} to="/products">
@@ -29,6 +29,9 @@ function NavBar({ user, setUser }) {
         </Button>
         <Button as={Link} to="/cart">
           Cart
+        </Button>
+        <Button as={Link} to="/reviews/new">
+          Create a New Review
         </Button>
         <Button as={Link} to="/reviews">
           Reviews

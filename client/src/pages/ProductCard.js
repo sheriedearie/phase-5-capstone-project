@@ -15,6 +15,8 @@ const ProductCard = ({ prod, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const location = useLocation()
 
+  
+
   console.log("DELETE FUNCTION")
   console.log(onDelete.name);
 

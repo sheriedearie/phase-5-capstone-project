@@ -1,19 +1,16 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../components/User";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-const NewReview = () => {
+const EditReview = () => {
     const [rating, setRating] = useState("");
     const [comment, setComment] = useState("");
-    const [product, setProduct] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
     const { setUser } = useContext(UserContext);
-    const photo = useRef(null);
-
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -21,10 +18,6 @@ const NewReview = () => {
         const formData = new FormData(e.target)
         formData.append("rating", rating)
         formData.append("comment", comment)
-        console.log("FORM DATA")
-        for (let el of formData.values()) {
-            console.log(el)
-        }
 
         fetch("/api/reviews", {
             method: "POST",
@@ -33,8 +26,8 @@ const NewReview = () => {
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
-                r.json().then((review) => setUser(currentUser => (
-                    { ...currentUser, reviews: [...currentUser.reviews, review] }
+                r.json().then((product) => setUser(currentUser => (
+                    { ...currentUser, products: [...currentUser.products, product] }
                 )));
                 history.push("/reviews");
             } else {
@@ -46,26 +39,8 @@ const NewReview = () => {
     return (
         <Wrapper>
             <WrapperChild>
-                <h2>Please fill out the form to add a new product</h2>
+                <h2>Edit Review</h2>
                 <form onSubmit={handleSubmit}>
-                    <FormField>
-                        <Label htmlFor="mediaUrl">Product: </Label>
-                        <Input
-                            type="file"
-                            name="photo"
-                            ref={photo}
-                            onChange={(e) => photo.current = (e.target.value)}
-                        />
-                    </FormField>
-                    <FormField>
-                        <Label htmlFor="product">Product: </Label>
-                        <Input
-                            type="text"
-                            id="product"
-                            value={product}
-                            onChange={(e) => setRating(e.target.value)}
-                        />
-                    </FormField>
                     <FormField>
                         <Label htmlFor="rating">Rating: </Label>
                         <Input
@@ -86,7 +61,7 @@ const NewReview = () => {
                     </FormField>
                     <FormField>
                         <Button color="primary" type="submit">
-                            {isLoading ? "Loading..." : "Add Product"}
+                            {isLoading ? "Loading..." : "Update"}
                         </Button>
                     </FormField>
                     <FormField>
@@ -112,4 +87,4 @@ const WrapperChild = styled.div`
   flex: 1;
 `;
 
-export default NewReview
+export default EditReview

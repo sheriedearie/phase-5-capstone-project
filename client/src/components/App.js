@@ -13,6 +13,7 @@ import NewReview from '../pages/NewReview';
 import ProductCard from "../pages/ProductCard";
 import ReviewContainer from "../pages/ReviewContainer";
 import EditProduct from "../pages/EditProduct";
+import EditReview from "../pages/EditReview";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -44,16 +45,16 @@ function App() {
           </Route>
           <Route path="/products/edit">
             <EditProduct />
+          <Route path="/reviews/new">
+            <NewReview />
+          </Route>
           </Route>
           <Route path="/reviews">
             <ReviewContainer />
           </Route>
-          <Route path="/reviews/new">
-            <NewReview />
+          <Route path="/reviews/edit">
+            <EditReview />
           </Route>
-          {/* create a new review but only if you 
-          have already purchased the product */}
-          {/* can't get there without purchasing something*/}
           <Route path="/cart">
             <Cart />
           </Route>
