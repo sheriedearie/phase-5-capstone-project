@@ -37,7 +37,7 @@ class ApplicationController < ActionController::API
   # end
 
   def not_found(exception)
-    binding.pry
+    # binding.pry
     render json: { errors: ["#{exception.model} not found"]}, status: :not_found
    end
 

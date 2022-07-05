@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
@@ -8,8 +8,6 @@ function EditProduct({ productObj, updateProduct }) {
     name: productObj.name,
     price: productObj.price
     });
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();

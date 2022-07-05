@@ -1,39 +1,44 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../components/User";
+import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-const EditReview = () => {
-    const [rating, setRating] = useState("");
-    const [comment, setComment] = useState("");
+const EditReview = ({ reviewObj, updateReview }) => {
+    const [review, setReview] = useState({
+        comment: reviewObj.comment,
+        rating: reviewObj.rating
+    });
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
-    const { setUser } = useContext(UserContext);
 
+    const handleChange = (e) => {
+        setReview({
+            ...review, [e.target.name]: e.target.value,
+        })
+    }
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-        const formData = new FormData(e.target)
-        formData.append("rating", rating)
-        formData.append("comment", comment)
 
-        fetch("/api/reviews", {
-            method: "POST",
-            body: formData
+        fetch(`/api/reviews/${reviewObj.id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': "application/json",
+            },
+            body: JSON.stringify({ rating: review.rating, comment: review.comment })
 
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
-                r.json().then((product) => setUser(currentUser => (
-                    { ...currentUser, products: [...currentUser.products, product] }
-                )));
-                history.push("/reviews");
+                r.json().then((review) => updateReview(review)
+                );
+                history.push("/products");
             } else {
                 r.json().then((err) => setErrors(err.errors));
             }
-        });
+        })
+            .catch((err) => alert(err.errors))
     }
 
     return (
@@ -46,8 +51,9 @@ const EditReview = () => {
                         <Input
                             type="integer"
                             id="rating"
-                            value={rating}
-                            onChange={(e) => setRating(e.target.value)}
+                            name="rating"
+                            value={review.rating}
+                            onChange={handleChange}
                         />
                     </FormField>
                     <FormField>
@@ -55,8 +61,9 @@ const EditReview = () => {
                         <Input
                             type="text"
                             id="comment"
-                            value={comment}
-                            onChange={(e) => setComment(e.target.value)}
+                            name="comment"
+                            value={review.comment}
+                            onChange={handleChange}
                         />
                     </FormField>
                     <FormField>

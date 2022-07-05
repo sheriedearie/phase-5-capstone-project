@@ -2,19 +2,15 @@
 // import CardContent from '@mui/material/CardContent';
 // import Typography from '@mui/material/Typography';
 import { Button, Input, Error, FormField } from "../styles";
-import React, { useState, useContext } from "react";
-import { UserContext } from '../components/User';
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import EditReview from './EditReview';
 
 
 
 const ReviewCard = ({ review, prod, onDelete }) => {
-  const [comment, setComment] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
-  const { user, setUser } = useContext(UserContext);
-  const [reviewID] = useState(review?.id);
   const history = useHistory();
   const [isEditing, setIsEditing] = useState(false);
   const location = useLocation()
@@ -22,22 +18,34 @@ const ReviewCard = ({ review, prod, onDelete }) => {
 
   console.log("this is the review card" + review?.product)
 
-  const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
   const updateReview = () => {
     setIsEditing(true);
   }
 console.log("the prod in review card" + prod)
 
-  const commitUpdate = (updatedProd) => {
-    console.log("UPDATED PRODUCT")
-    console.log(updatedProd);
-    setReviewObj(updatedProd)
+  const commitUpdate = (updatedReview) => {
+    console.log("UPDATED REVIEW")
+    console.log(updatedReview);
+    setReviewObj(updatedReview)
     setIsEditing(false)
   }
+  useEffect(() => {
+    if (!review) {
+      fetch(`/api/reviews/${review.id}`)
+        .then((r) => r.json())
+        .then((review) => {
+          debugger;
+          setReviewObj(review);
+          console.log("Product ID in the product card = ")
+          console.log(review)
+        });
+    }
+  }, []);
+
 
   function deleteReview() {
-    onDelete(prod.id)
-    history.push('/reviews');
+    onDelete(review.id)
+    history.push('/products');
   };
 
   console.log(review?.product)
@@ -47,12 +55,11 @@ console.log("the prod in review card" + prod)
         <>
 
           <div key={review?.id} align="center">
-            {/* <Link to={`/reviews/${review?.id}`}>
-              <img src={url} alt="product" />
-            </Link> */}
+            <Link to={`/reviews/${review?.id}`}>
             <h1 variant="h5" component="h3" color="secondary">
               Product: {review?.product}
             </h1>
+            </Link>
             <h1 variant="h5" component="h3" color="secondary">
               Rating: {review?.rating}
             </h1>

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Box, Button, FormField } from "../styles";
-import emailjs from '@emailjs/browser';
+// import emailjs from '@emailjs/browser';
 
 
 const Cart = ({onAdd, onRemove, cart, setCart, products}) => {

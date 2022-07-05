@@ -4,8 +4,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :purchased_products, serializer: ProductSerializer
   include Rails.application.routes.url_helpers
 
-  # has_many :purhcased_products, serializer: ProductSerializer
-
   def avatar
     return nil unless object.avatar.attached?
     # binding.pry

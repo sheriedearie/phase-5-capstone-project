@@ -3,7 +3,7 @@ import { UserContext } from '../components/User'
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
 // import ProductContainer from './ProductContainer';
-import ReviewContainer from './ReviewContainer';
+// import ReviewContainer from './ReviewContainer';
 
 
 function Profile() {
@@ -19,16 +19,19 @@ function Profile() {
   console.log("this is the end of the profile")
 
   return (
+    <>
     <div className="card" elevation={0}>
 
-      <h2>Welcome back {user.name}!</h2>
+      <h1>Welcome back {user.name}!</h1>
       <img src={avatarURL} alt="avatar" />
-      <div>
-        <h1>You have purchased this many products: {user.total_purchased_products}</h1>
-      </div>
+     
       {/* <ReviewContainer /> */}
       {/* show the products that have been purchased */}
     </div>
+       <div>
+        <h2>You have purchased this many products: {user.total_purchased_products}</h2>
+      </div>
+      </>
   );
 }
 

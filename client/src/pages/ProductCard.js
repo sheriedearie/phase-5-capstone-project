@@ -16,11 +16,6 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
   const location = useLocation()
 
 
-
-  // console.log("DELETE FUNCTION")
-  // console.log(onDelete.name);
-
-
   const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
 
   const updateProduct = () => {
@@ -52,13 +47,6 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
     onDelete(prod.id)
     history.push('/products');
   };
-
-  // function addToCart() {
-  //   onAdd(prod)
-  //   debugger;
-  //   history.push('/cart');
-  // };
-
 
   return (
     <div className="card" elevation={0}>
