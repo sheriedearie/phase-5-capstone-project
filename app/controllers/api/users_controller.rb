@@ -11,6 +11,10 @@ class Api::UsersController < ApplicationController
     render json: current_user
   end
 
+  def showcart
+    render json: current_user.cart_products
+  end
+
   # def index
   #   users = User.all
   #   render json: users,  status: 200

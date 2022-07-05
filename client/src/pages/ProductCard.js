@@ -17,8 +17,8 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
 
 
 
-  console.log("DELETE FUNCTION")
-  console.log(onDelete.name);
+  // console.log("DELETE FUNCTION")
+  // console.log(onDelete.name);
 
 
   const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
@@ -53,10 +53,11 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
     history.push('/products');
   };
 
-  function addToCart() {
-    onAdd(prod.id)
-    history.push('/cart');
-  };
+  // function addToCart() {
+  //   onAdd(prod)
+  //   debugger;
+  //   history.push('/cart');
+  // };
 
 
   return (
@@ -100,7 +101,7 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
 
       }
 
-      <Button onClick={addToCart} variant="fill" color="primary" type="submit">
+      <Button onClick={() => onAdd(prod)} variant="fill" color="primary" type="submit">
         {isLoading ? "Adding..." : "Add to Cart"}
       </Button>
 

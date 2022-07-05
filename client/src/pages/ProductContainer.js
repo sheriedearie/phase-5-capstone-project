@@ -1,11 +1,15 @@
 import ProductList from './ProductList'
 import React, { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 
 
-const ProductContainer = () => {
+
+const ProductContainer = ({onAdd}) => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
+    const [cart, setCart] = useState([]);
 
     console.log("products container = ")
     console.log(products)
@@ -43,10 +47,16 @@ const ProductContainer = () => {
     console.log("TOP DELETE FUNCTION")
     console.log(deleteProduct.name)
 
+    // function onAdd(e) {
+    //   addToCart(setCart)
+    // }
+  
+
+
     return (
         <div>
             <h1>Products to Purchase</h1>
-            <ProductList prods={products} deleteProd={deleteProduct} />
+            <ProductList prods={products} deleteProd={deleteProduct} onAdd={onAdd}/>
         </div>
     )
 }

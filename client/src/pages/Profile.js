@@ -24,6 +24,7 @@ function Profile() {
       <h2>Welcome back {user.name}!</h2>
       <img src={avatarURL} alt="avatar" />
       {/* <ReviewContainer /> */}
+      {/* show the products that have been purchased */}
     </div>
   );
 }

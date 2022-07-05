@@ -23,10 +23,10 @@ const ReviewCard = ({ review, prod, onDelete }) => {
   console.log("this is the review card" + review?.product)
 
   const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
-
   const updateReview = () => {
     setIsEditing(true);
   }
+console.log("the prod in review card" + prod)
 
   const commitUpdate = (updatedProd) => {
     console.log("UPDATED PRODUCT")
@@ -47,10 +47,9 @@ const ReviewCard = ({ review, prod, onDelete }) => {
         <>
 
           <div key={review?.id} align="center">
-            <Link to={`/reviews/${review?.id}`}>
-              <img src={url} alt="review" />
-            </Link>
-
+            {/* <Link to={`/reviews/${review?.id}`}>
+              <img src={url} alt="product" />
+            </Link> */}
             <h1 variant="h5" component="h3" color="secondary">
               Product: {review?.product}
             </h1>

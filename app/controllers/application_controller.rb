@@ -8,6 +8,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   before_action :authorize
+  # before_action :current_cart
 
   private
   
@@ -18,6 +19,22 @@ class ApplicationController < ActionController::API
   def authorize
     render json: { errors: ["Not authorized"] }, status: :unauthorized unless current_user
   end 
+
+  # def current_cart
+  #   if session[:cart_id]
+  #     cart = Cart.find_by(id: session[:cart_id], user: session[:user_id])
+  #     if cart.present?
+  #       @current_cart = cart
+  #     else 
+  #       session[:cart_id] = nil
+  #     end
+  #   end
+  # end
+
+  #   if session[:cart_id] == nil
+  #     @current_cart = Cart.create
+  #     session[:cart_id] = @current_cart.id
+  # end
 
   def not_found(exception)
     binding.pry

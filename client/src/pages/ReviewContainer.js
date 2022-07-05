@@ -9,6 +9,7 @@ const ReviewContainer = () => {
 
     console.log("this is a review container")
     console.log(reviews)
+    // console.log(prod)
 
     useEffect(() => {
         fetch("/api/reviews")
