@@ -41,35 +41,47 @@ function App() {
           quantity: 1
         })
       }).then((r) => {
-        if(r.ok){
+        if (r.ok) {
           r.json().then((cartProds) => setCart(cartProds))
         }
-        else{
+        else {
           r.json().then((err) => setErrors(err.errors));
         }
       })
-        .catch((err) => setErrors(err.errors));
-      // const inCart = cart.find(item => item.id === prod.id);
-      // if (inCart) {
-      //   setCart(cart.map(item => item.id === prod.id ? { ...inCart, qty: inCart.qty + 1 } : item
-      //   ));
-      // } else {
-      //   setCart([...cart, { ...prod, qty: 1 }])
-      // }
-      // console.log("UPDATED CART")
-      // console.log(cart)
+      .catch((err) => setErrors(err.errors));
+    // const inCart = cart.find(item => item.id === prod.id);
+    // if (inCart) {
+    //   setCart(cart.map(item => item.id === prod.id ? { ...inCart, qty: inCart.qty + 1 } : item
+    //   ));
+    // } else {
+    //   setCart([...cart, { ...prod, qty: 1 }])
+    // }
+    // console.log("UPDATED CART")
+    // console.log(cart)
   };
 
-  function removeFromCart(prod) {
-    const inCart = cart.find((item) => item.id === prod)
-    if (inCart.qty === 1) {
-        setCart(cart.filter((item) => item.id !== prod))
-    } else {
-        setCart(cart.map(item => item.id === prod ? { ...inCart, qty: inCart.qty - 1 } : item))
-    }
-    console.log("this is prod inside of the cart")
-    console.log(prod)
-  }
+  function removeFromCart(prodID) {
+    fetch(`/api/cart_products/${prodID}`, {
+      method: 'delete'
+    }).then((r) => {
+      if (r.ok) {
+        setCart([...cart].filter((prod) => prod.product_id !== prodID))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    })
+      .catch((err) => setErrors(err.errors));
+
+
+    //   const inCart = cart.find((item) => item.id === prod)
+    //   if (inCart.qty === 1) {
+    //       setCart(cart.filter((item) => item.id !== prod))
+    //   } else {
+    //       setCart(cart.map(item => item.id === prod ? { ...inCart, qty: inCart.qty - 1 } : item))
+    //   }
+    //   console.log("this is prod inside of the cart")
+    //   console.log(prod)
+  };
 
   function deleteProduct(prodID) {
     setErrors([]);
@@ -92,24 +104,23 @@ function App() {
   useEffect(() => {
     //Get Available Products
     fetch("/api/products")
-            .then((r) => r.json())
-            .then(prods => {
-                setProducts(prods)
-                console.log("PRODUCTS SET =")
-                console.log(prods)
-            }
-            )
-            .catch(err => alert(err))
+      .then((r) => r.json())
+      .then(prods => {
+        setProducts(prods)
+        console.log("PRODUCTS SET =")
+        console.log(prods)
+      }
+      )
+      .catch(err => alert(err))
 
     //Get current user and Cart
     fetch("/api/me").then((r) => {
       if (r.ok) {
         r.json().then((usr) => {
           setUser(usr)
-          fetch(`/api/users/${usr.id}/cart_products`).then((r) =>{
-            if(r.ok){
-              r.json().then((cartProds) => 
-              {
+          fetch(`/api/users/${usr.id}/cart_products`).then((r) => {
+            if (r.ok) {
+              r.json().then((cartProds) => {
                 setCart(cartProds)
               })
             }
@@ -117,7 +128,7 @@ function App() {
         });
       }
     });
-    
+
 
   }, []);
 
@@ -127,7 +138,7 @@ function App() {
   else {
     return (
       <>
-{/* 
+        {/* 
         <div className="App">
           <h1>Count: {count}</h1>
           <button onClick={() => setCount(count + 1)}>+</button>
@@ -138,10 +149,10 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/products/new">
-              <NewProduct products={products} setProducts={setProducts}/>
+              <NewProduct products={products} setProducts={setProducts} />
             </Route>
             <Route path="/products">
-              <ProductList prods={products} deleteProd={deleteProduct} onAdd={addToCart}/>
+              <ProductList prods={products} deleteProd={deleteProduct} onAdd={addToCart} />
             </Route>
             <Route path="/reviews/new">
               <NewReview />
@@ -150,7 +161,7 @@ function App() {
               <ReviewContainer />
             </Route>
             <Route path="/cart">
-              <Cart onAdd={addToCart} cart={cart} setCart={setCart} onRemove={removeFromCart} products={products}/>
+              <Cart onAdd={addToCart} cart={cart} setCart={setCart} onRemove={removeFromCart} products={products} />
             </Route>
             <Route path="/signin">
               <Login />

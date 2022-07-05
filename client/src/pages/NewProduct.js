@@ -34,8 +34,6 @@ function NewProduct({setProducts, products}) {
       if (r.ok) {
         r.json().then((product) => 
         setProducts([...products, product])
-        // setUser(currentUser => (
-        //   { ...currentUser, products: [...currentUser.products, product] }
         );
         history.push("/products");
       } else {

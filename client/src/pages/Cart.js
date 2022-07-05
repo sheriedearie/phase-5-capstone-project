@@ -35,7 +35,7 @@ const Cart = ({onAdd, onRemove, cart, setCart, products}) => {
                         const prod = products.find(item => item.id === cartProd.product_id)
                         const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
                         return (
-                        <div className="container" >
+                        <div className="container" key={prod.id} >
                             <Box>
                             <h1>{prod.name}</h1>
                             <h1>${prod.price}</h1>
