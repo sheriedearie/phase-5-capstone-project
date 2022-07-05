@@ -138,7 +138,7 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/products/new">
-              <NewProduct />
+              <NewProduct products={products} setProducts={setProducts}/>
             </Route>
             <Route path="/products">
               <ProductList prods={products} deleteProd={deleteProduct} onAdd={addToCart}/>

@@ -4,14 +4,15 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-function NewProduct() {
+function NewProduct({setProducts, products}) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const photo = useRef(null);
-  const { setUser } = useContext(UserContext);
+  // const { setUser } = useContext(UserContext);
+  // const [product, setProduct] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,9 +32,11 @@ function NewProduct() {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((product) => setUser(currentUser => (
-          { ...currentUser, products: [...currentUser.products, product] }
-        )));
+        r.json().then((product) => 
+        setProducts([...products, product])
+        // setUser(currentUser => (
+        //   { ...currentUser, products: [...currentUser.products, product] }
+        );
         history.push("/products");
       } else {
         r.json().then((err) => setErrors(err.errors));
