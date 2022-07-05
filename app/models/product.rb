@@ -7,4 +7,8 @@ class Product < ApplicationRecord
     belongs_to :user
     has_one_attached :photo, dependent: :destroy
     has_many :cart_products
+
+    def buyer_purchases
+        self.buyers.uniq.length
+    end
 end

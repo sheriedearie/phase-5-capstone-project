@@ -79,6 +79,10 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
             <h1 variant="h5" component="h3" color="secondary">
               Creator: {productObj?.user?.name}
             </h1>
+            <h1 variant="h5" component="h3" color="secondary">
+              Number of Purchasers: {productObj?.buyer_purchases}
+            </h1>
+
           </div>
           {location.pathname !== "/products" ? (
             <>

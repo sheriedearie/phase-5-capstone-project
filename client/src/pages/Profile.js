@@ -23,6 +23,9 @@ function Profile() {
 
       <h2>Welcome back {user.name}!</h2>
       <img src={avatarURL} alt="avatar" />
+      <div>
+        <h1>You have purchased this many products: {user.total_purchased_products}</h1>
+      </div>
       {/* <ReviewContainer /> */}
       {/* show the products that have been purchased */}
     </div>

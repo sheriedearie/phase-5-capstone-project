@@ -14,10 +14,7 @@ class User < ApplicationRecord
   validates :password, length: {in: 3..50}
   validates :email, presence: true, uniqueness: true, format: {with: /\A(?<username>[^@\s]+)@((?<domain_name>[-a-z0-9]+)\.(?<domain>[a-z]{2,}))\z/i}
   # enum role: %i(admin)
+  def total_purchased_products
+    self.purchased_products.uniq.length
+  end
 end
-
-# should cart be in the backend?
-# do we store
-# completed true?
-# or reuse the same object. 
-
