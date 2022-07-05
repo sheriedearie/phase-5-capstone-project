@@ -26,14 +26,14 @@ notebook.photo.attach(io: File.open("app/assests/notebook.jpg"), filename: 'note
 gopro = Product.create(user: stephen, name: "Gopro", price: 350)
 gopro.photo.attach(io: File.open("app/assests/gopro.jpg"), filename: 'gopro.jpg')
 
-purchase1 = Purchase.create(product:xbox, user:sheridan)
-purchase2 = Purchase.create(product:notebook, user:stephen)
-purchase3 = Purchase.create(product:gopro, user:peter)
+purchase1 = Purchase.create(user:sheridan)
+purchase2 = Purchase.create(user:stephen)
+purchase3 = Purchase.create(user:peter)
 
 CartProduct.create(user_id: 3, product_id: 1)
 CartProduct.create(user_id: 2, product_id: 2)
 CartProduct.create(user_id: 1, product_id: 3)
 
-Review.create(purchase: purchase1, rating: 5, comment:"This product is amazing, 10/10!", user_id: 1, product_id: 1)
-Review.create(purchase: purchase2, rating: 4, comment:"I love how easy it is to write in this!", user_id: 2, product_id: 2)
-Review.create(purchase: purchase3, rating: 3, comment:"The quality of these videos is immaculate.", user_id: 3, product_id: 3)
+Review.create(purchase: purchase1, rating: 5, comment:"This product is amazing, 10/10!", user_id: 3, product: xbox)
+Review.create(purchase: purchase2, rating: 4, comment:"I love how easy it is to write in this!", user_id: 2, product: gopro)
+Review.create(purchase: purchase3, rating: 3, comment:"The quality of these videos is immaculate.", user_id: 1, product: notebook)

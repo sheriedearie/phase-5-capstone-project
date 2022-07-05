@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-    attributes :id, :rating, :comment, :buyer, :product
+    attributes :id, :rating, :comment, :buyer, :purchase
     # belongs_to :product, serializer: ProductSerializer
     def buyer
         "#{self.object.buyer.name}"

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :cart_products
   has_many :purchases
-  has_many :purchased_products, through: :purchases, source: :product
+  has_many :purchased_products, through: :purchases
   has_many :reviews, through: :purchases
   # has_many :reviews
   has_many :products

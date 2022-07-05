@@ -22,15 +22,12 @@ const Cart = ({onAdd, onRemove, cart, setCart, products}) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              id: products.id,
-              user: user.id
+              user_id: user.id
             }),
         }).then((r) => {
             setIsLoading(false);
             if (r.ok) {
-                r.json().then((cart) => setUser (currentUser => (
-                    {...currentUser, carts: [...currentUser.carts, cart] }
-                )));
+                setCart([]);
                 } else {
                 r.json().then((err) => setErrors(err.errors));
             }
@@ -59,7 +56,7 @@ const Cart = ({onAdd, onRemove, cart, setCart, products}) => {
                 {/* email js
             print out in the front end a confirmation message
             keep track of purchases and empty the cart, which happens when the checkout button is clicked. */}
-                <Button onSubmit={goToCheckout}>Checkout</Button>
+                <Button onClick={goToCheckout}>Checkout</Button>
             </>
         )
     }

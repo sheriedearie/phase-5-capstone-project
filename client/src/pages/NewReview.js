@@ -4,17 +4,16 @@ import { useHistory, Redirect, useLocation } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-const NewReview = () => {
+const NewReview = ({ purchase }) => {
     const [rating, setRating] = useState("");
     const [comment, setComment] = useState("");
-    const [product, setProduct] = useState("");
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
     const { setUser } = useContext(UserContext);
-    const photo = useRef(null);
-    const location = useLocation();
-    const locationState = location.state
+    // const photo = useRef(null);
+    // const location = useLocation();
+    // const locationState = location.state
 
 
 
@@ -33,9 +32,10 @@ const NewReview = () => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              rating: rating,
-              product: locationState.product,
-              comment: comment
+                rating: rating,
+                purchase_id: purchase.id,
+                comment: comment,
+                user_id: purchase.user_id
             }),
         }).then((r) => {
             setIsLoading(false);
@@ -49,14 +49,28 @@ const NewReview = () => {
             }
         });
     }
-if (!locationState?.product.name) return <Redirect to='/products'/>
+
+    function handleChange(e) {
+        // setprods(e.target.value)
+    }
+
+    // if (!locationState?.product.name) return <Redirect to='/reviews'/>
 
     return (
         <Wrapper>
             <WrapperChild>
-                <h2>Add a new review for the{locationState.product}</h2>
+                <h2>Add a new review for {purchase.product.name}</h2>
                 <form onSubmit={handleSubmit}>
-                                        <FormField>
+                    {/* <FormField>
+                        <Label htmlFor="product">Product: </Label>
+                        <select name='option' onChange={handleChange}>
+                            {/* mapping through all of the pets under user */}
+                            {/* taking the pet object and for every pet object doing the thing after the arrow function */}
+                            {/* <option value=""> Select a Product</option>
+                            {prods.map(product => (<option key={product.id} value={product.name}>{product.name}</option>))}
+                        </select> */}
+                    {/* </FormField> * */}
+                    {/* <FormField>
                         <Label htmlFor="product">Product: </Label>
                         <Input
                             type="text"
@@ -64,7 +78,7 @@ if (!locationState?.product.name) return <Redirect to='/products'/>
                             value={product}
                             onChange={(e) => setRating(e.target.value)}
                         />
-                    </FormField>
+                    </FormField> */}
                     <FormField>
                         <Label htmlFor="rating">Rating: </Label>
                         <Input
@@ -85,7 +99,7 @@ if (!locationState?.product.name) return <Redirect to='/products'/>
                     </FormField>
                     <FormField>
                         <Button color="primary" type="submit">
-                            {isLoading ? "Loading..." : "Add Product"}
+                            {isLoading ? "Loading..." : "Submit Review"}
                         </Button>
                     </FormField>
                     <FormField>

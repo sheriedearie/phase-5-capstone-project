@@ -1,7 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :avatar, :name, :reviews, :total_purchased_products
   has_many :products, serializer: ProductSerializer
-  has_many :purchased_products, serializer: ProductSerializer
+  #has_many :purchased_products, serializer: ProductSerializer
   include Rails.application.routes.url_helpers
 
   def avatar
