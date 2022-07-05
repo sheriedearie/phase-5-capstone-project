@@ -9,12 +9,11 @@ class Api::CartProductsController < ApplicationController
     end
 
     def create
-        cartProd = current_user.cart_products.find_by(id: params[:product_id])
+        cartProd = current_user.cart_products.find_by(product_id: params[:product_id])
         if(cartProd)
             cartProd.quantity += 1;
         else
-            product = Product.find_by!(id: params[:product_id])
-            cartProd = CartProduct.create!(cart_product_params)
+            cartProd = CartProduct.create!(product_id: params[:product_id], user_id: params[:user_id], quantity: params[:quantity])
         end
         # if current_user.cart_products.include? 
 #           @cart_product = current_cart.cart_products.find_by(product_id: product.id)
@@ -25,7 +24,7 @@ class Api::CartProductsController < ApplicationController
 #           @cart_product.product = product
 #         end
 #         @cart_product.save
-        render json: cartProd, status: :created
+        render json: current_user.cart_products, status: :created
     end
   
 #     def update
@@ -60,6 +59,6 @@ class Api::CartProductsController < ApplicationController
 
     def cart_product_params
     # params.permit(:product_id, :user_id, :cart_product)
-    params.require(:product_id, :user_id).permit(:cart_product)
+    params.permit(:product_id, :user_id, :quantity)
     end
 end
