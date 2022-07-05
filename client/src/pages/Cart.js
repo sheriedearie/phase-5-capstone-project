@@ -1,31 +1,41 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { Box, Button, FormField } from "../styles";
+import {useHistory} from 'react-router-dom';
+import { UserContext } from "../components/User";
+
 // import emailjs from '@emailjs/browser';
 
 
 const Cart = ({onAdd, onRemove, cart, setCart, products}) => {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const history = useHistory();
+    const {user, setUser } = useContext(UserContext);
 
-    const form = useRef();
+    // const form = useRef();
 
     console.log("HERES THE CART")
     console.log(cart)
 
-        // function handleSubmit(e) {
-        //     e.preventDefault();
-        //     setErrors([]);
-        //     setIsLoading(true);
-        //     const inCart = cart.find(item => item.id === prods.id);
-        //     if (inCart) {
-        //         setCart(cart.map(item => item.id === prods.id ? { ...inCart, qty: inCart.qty + 1 } : item
-        //         ));
-        //     } else {
-        //         setCart([...cart, { ...prods, qty: 1 }])
-        //     }
-        // }
-        // fetch purchases?
-        
+    function goToCheckout () {
+        fetch("/api/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              id: products.id,
+              user: user.id
+            }),
+        }).then((r) => {
+            setIsLoading(false);
+            if (r.ok) {
+                r.json().then((cart) => setUser (currentUser => (
+                    {...currentUser, carts: [...currentUser.carts, cart] }
+                )));
+                } else {
+                r.json().then((err) => setErrors(err.errors));
+            }
+        });
+    }
 
         return (
             <>
@@ -49,7 +59,7 @@ const Cart = ({onAdd, onRemove, cart, setCart, products}) => {
                 {/* email js
             print out in the front end a confirmation message
             keep track of purchases and empty the cart, which happens when the checkout button is clicked. */}
-                <Button>Checkout</Button>
+                <Button onSubmit={goToCheckout}>Checkout</Button>
             </>
         )
     }
