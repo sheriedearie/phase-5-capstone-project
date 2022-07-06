@@ -78,8 +78,6 @@ ActiveRecord::Schema.define(version: 2022_07_05_045519) do
     t.bigint "purchase_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "product_id", null: false
-    t.index ["product_id"], name: "index_reviews_on_product_id"
     t.index ["purchase_id"], name: "index_reviews_on_purchase_id"
   end
 
@@ -96,5 +94,4 @@ ActiveRecord::Schema.define(version: 2022_07_05_045519) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_products", "products"
   add_foreign_key "cart_products", "users"
-  add_foreign_key "reviews", "products"
 end

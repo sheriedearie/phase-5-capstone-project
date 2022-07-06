@@ -31,16 +31,13 @@ function ReviewList({ reviews }) {
 
   return (
     <Wrapper>
-      <Button as={Link} to="/reviews/new">
-              Make a New Review
-            </Button>
       <Box>
         {reviews?.length > 0 ? (
           <div>{renderReview}</div>
         ) : (
           <>
             <h2>No Reviews Found</h2>
-            <Button as={Link} to="/reviews/new">
+            <Button as={Link} to="/profile">
               Make a New Review
             </Button>
 

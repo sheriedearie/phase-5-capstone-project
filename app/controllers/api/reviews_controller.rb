@@ -5,7 +5,8 @@ class Api::ReviewsController < ApplicationController
 
     def create
         byebug
-        reviews = Review.create!(rating: params[:rating], comment: params[:comment], user_id: params[:user_id], purchase_id: params[:purchase_id])
+        # purchase = Purchase.find(params[:purchase_id])
+        reviews = Review.create!(rating: params[:rating], comment: params[:comment], purchase_id: params[:purchase_id])#, user_id: params[:user_id])
         render json: reviews, status: :created
     end
 
@@ -23,6 +24,6 @@ class Api::ReviewsController < ApplicationController
 private
 
     def review_params
-        params.permit(:rating, :comment, :user_id, :purchase_id)
+        params.permit(:rating, :comment, :purchase_id)#, :user_id)
     end
 end

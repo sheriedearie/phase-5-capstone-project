@@ -42,6 +42,7 @@ function Profile() {
       </div>
       <div>
         <h2>You have purchased this many products: {user.total_purchased_products}</h2>
+        {/* Displaying products that have been purchased */}
          {purchases?.map(purchase => {
           return (<PurchasedProduct key={purchase?.id} purchase={purchase}/>)
          })}  
@@ -51,6 +52,8 @@ function Profile() {
         {/* serialized in the products */}
         {/* how does backend receive the data if array of purchases, and a purchase has an array of products - then leave 45-47 alone */}
       </div>
+
+
     </>
   );
 }
