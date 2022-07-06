@@ -1,6 +1,6 @@
 class Api::ReviewsController < ApplicationController
     def index
-        render json: Review.all
+        render json: current_user.reviews
     end
 
     def create

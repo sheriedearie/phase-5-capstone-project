@@ -87,10 +87,6 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
             </Box>
             &nbsp;
             &nbsp;
-
-            {/* email js
-            print out in the front end a confirmation message
-            keep track of purchases and empty the cart, which happens when the checkout button is clicked. */}
         </>
     )
 }

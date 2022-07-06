@@ -2,10 +2,11 @@ class ReviewSerializer < ActiveModel::Serializer
     attributes :id, :rating, :comment, :buyer, :purchase
     # belongs_to :product, serializer: ProductSerializer
     def buyer
-        "#{self.object.buyer.name}"
-        # might be an issue with line 5
+        # change to buyer_name
+        "#{self.object.user.name}"
     end
-    def product
+    def product     
+        byebug
         "#{self.object.product.name}"
     end
 end
