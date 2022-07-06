@@ -20,7 +20,8 @@ function ReviewList({ reviews }) {
           }
         })
         .catch((err) => alert(err.errors))
-      console.log("these are the reviewslist" + reviews)
+      console.log("these are the reviewslist") 
+      console.log(reviewList)
     }
   }, [])
 

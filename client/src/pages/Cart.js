@@ -1,11 +1,8 @@
 import React, { useState, useContext, useRef } from "react";
 import { Box, Button, FormField, Label, Input } from "../styles";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { UserContext } from "../components/User";
 import emailjs from '@emailjs/browser';
-
-// import emailjs from '@emailjs/browser';
-
 
 const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
     const [errors, setErrors] = useState([]);
@@ -24,7 +21,6 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
                 console.log(error.text);
             });
     };
-    // const form = useRef();
 
     console.log("HERES THE CART")
     console.log(cart)
@@ -49,7 +45,16 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
     return (
         <>
             <Box>
-                {cart.length === 0 ? (<h1>Cart Is Empty</h1>) :
+                {cart.length === 0 ? (
+                    <>
+                        <h1>Cart Is Empty</h1>
+                        <Button as={Link} to="/products">
+                            Add Products to the Cart
+                        </Button>
+                    </>
+
+                ) :
+
                     cart.map(cartProd => {
                         const prod = products.find(item => item.id === cartProd.product_id)
                         const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
@@ -61,26 +66,28 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
                                     <img src={url} alt="product" style={{ width: "50%", height: "50%" }} />
                                     {<Button onClick={() => onRemove(prod.id)}>Remove</Button>}
                                 </Box>
+                                <FormField>
+                                    <form ref={form} onSubmit={sendEmail}>
+                                        <Label>Name</Label>
+                                        <Input type="text" name="user_name" />
+                                        <Label>Email</Label>
+                                        <Input type="email" name="user_email" />
+                                        &nbsp;
+                                        &nbsp;
+                                        <Button type="submit" onClick={goToCheckout}>Checkout</Button>
+                                        &nbsp;
+                                    </form>
+                                </FormField>
                             </div>
                         )
                     })}
+
+                &nbsp;
+                &nbsp;
             </Box>
             &nbsp;
             &nbsp;
-            <FormField>
-            <form ref={form} onSubmit={sendEmail}>
-                <Label>Name</Label>
-                <Input type="text" name="user_name" />
-                <Label>Email</Label>
-                <Input type="email" name="user_email" />
-                &nbsp;
-                &nbsp;
-                <Button type="submit"onClick={goToCheckout}>Checkout</Button>
-                &nbsp;
-            </form>
-            </FormField>
-            &nbsp;
-            &nbsp;
+
             {/* email js
             print out in the front end a confirmation message
             keep track of purchases and empty the cart, which happens when the checkout button is clicked. */}
