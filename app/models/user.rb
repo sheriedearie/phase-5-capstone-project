@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :cart_products
   has_many :purchases
-  has_many :purchased_products, through: :purchases
+  # has_many :purchased_products, through: :purchases, source: :product
   has_many :reviews, through: :purchases
   # has_many :reviews
   has_many :products
@@ -15,6 +15,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: {with: /\A(?<username>[^@\s]+)@((?<domain_name>[-a-z0-9]+)\.(?<domain>[a-z]{2,}))\z/i}
   # enum role: %i(admin)
   def total_purchased_products
-    self.purchased_products.uniq.length
+    self.purchases.length
   end
 end

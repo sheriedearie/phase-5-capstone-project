@@ -42,9 +42,9 @@ function Profile() {
       </div>
       <div>
         <h2>You have purchased this many products: {user.total_purchased_products}</h2>
-        {/* {purchases?.map(purchase => {
-          return purchase.products.map(product => <PurchasedProduct product={product} key={purchase?.id} purchase={purchase}/>)
-        })}  */}
+         {purchases?.map(purchase => {
+          return (<PurchasedProduct key={purchase?.id} purchase={purchase}/>)
+         })}  
 
         {/* review console */}
         {/* check serializer */}

@@ -1,7 +1,7 @@
 class Purchase < ApplicationRecord
-    has_one :review
-    #has_many :products
+    has_many :reviews
     belongs_to :user
-    has_many :purchased_products
-    has_many :products, through: :purchased_products
+    # has_many :purchased_products
+    # belongs_to :product
+    belongs_to :product
 end

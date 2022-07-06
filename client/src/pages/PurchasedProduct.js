@@ -1,4 +1,4 @@
-import { useHistory, Link, useLocation } from 'react-router-dom';
+// import { useHistory, Link, useLocation } from 'react-router-dom';
 import { Box } from '../styles';
 import NewReview from './NewReview';
 
@@ -17,10 +17,10 @@ const PurchasedProduct = ({ purchase }) => {
                 {/* </Link> */}
 
                 <h1 variant="h5" component="h3" color="secondary">
-                    Name: {purchase.product.name}
+                    Name: {purchase.product?.name}
                 </h1>
                 <h1 variant="h5" component="h3" color="secondary">
-                    Price: ${purchase.product.price}
+                    Price: ${purchase.product?.price}
                 </h1>
                 <NewReview purchase={purchase}/>
             </div>

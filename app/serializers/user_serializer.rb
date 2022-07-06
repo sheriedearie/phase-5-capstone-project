@@ -9,7 +9,8 @@ class UserSerializer < ActiveModel::Serializer
     # binding.pry
     object.avatar.blob.attributes.slice('filename', 'byte_size').merge(url: rails_blob_path(object.avatar, only_path: true)).tap { |attrs| attrs['name'] = attrs.delete('filename') }
   end
-  #  def avatar
-  #     Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached? 
+
+  #  def products_purchased
+  #   self.object.purchases.name
   #   end
 end

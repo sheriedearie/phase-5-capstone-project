@@ -11,8 +11,11 @@ class Api::CartProductsController < ApplicationController
     def create
         cartProd = current_user.cart_products.find_by(product_id: params[:product_id])
         if(cartProd)
+            cartProd.quantity ||= 1;
             cartProd.quantity += 1;
+            cartProd.save
         else
+            params[:quantity] = 1;
             cartProd = CartProduct.create!(product_id: params[:product_id], user_id: params[:user_id], quantity: params[:quantity])
         end
         render json: current_user.cart_products, status: :created
