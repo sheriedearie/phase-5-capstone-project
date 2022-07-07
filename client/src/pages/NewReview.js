@@ -4,7 +4,7 @@ import { useHistory, Redirect, useLocation } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 
-const NewReview = ({ purchase }) => {
+const NewReview = ({ purchase, product}) => {
     const [rating, setRating] = useState("");
     const [comment, setComment] = useState("");
     const [errors, setErrors] = useState([]);
@@ -38,11 +38,13 @@ const NewReview = ({ purchase }) => {
                 user_id: purchase.user_id
             }),
         }).then((r) => {
+            debugger;
             setIsLoading(false);
             if (r.ok) {
                 r.json().then((review) => setUser(currentUser => (
                     { ...currentUser, reviews: [...currentUser.reviews, review] }
                 )));
+                debugger;
                 history.push("/reviews");
             } else {
                 r.json().then((err) => setErrors(err.errors));
@@ -59,7 +61,7 @@ const NewReview = ({ purchase }) => {
     return (
         <Wrapper>
             <WrapperChild>
-                <h2>Add a new review for {purchase.product.name}</h2>
+                <h2>Add a new review for {product}</h2>
                 <form onSubmit={handleSubmit}>
                     {/* <FormField>
                         <Label htmlFor="product">Product: </Label>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Box, Button } from "../styles";
 import ReviewCard from './ReviewCard'
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, onDelete }) {
   const [reviewList, setReviewList] = useState([]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function ReviewList({ reviews }) {
 
   const finalReviewList = reviews ? reviews : reviewList
   const renderReview = finalReviewList?.map(review => {
-    return <ReviewCard key={review.id} review={review} />
+    return <ReviewCard key={review.id} review={review} onDelete={onDelete}/>
   });
 
   return (

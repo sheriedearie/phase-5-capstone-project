@@ -154,9 +154,9 @@ function App() {
             <Route path="/products">
               <ProductList prods={products} deleteProd={deleteProduct} onAdd={addToCart} />
             </Route>
-            {/* <Route path="/reviews/new">
-              <NewReview prods={products}/>
-            </Route> */}
+            <Route path="/reviews/new">
+              <NewReview />
+            </Route>
             <Route path="/reviews">
               <ReviewContainer />
             </Route>

@@ -1,7 +1,7 @@
 import ReviewList from "./ReviewList";
 import React, { useState, useEffect } from "react";
 
-const ReviewContainer = () => {
+const ReviewContainer = ({onDelete, onAdd}) => {
   const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -45,7 +45,7 @@ const ReviewContainer = () => {
   return (
     <>
       <h1>Reviews</h1>
-      <ReviewList reviews={reviews} deleteReview={deleteReview} />
+      <ReviewList reviews={reviews} onDelete={deleteReview} />
     </>
   )
 }

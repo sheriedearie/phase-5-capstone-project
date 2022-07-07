@@ -41,14 +41,18 @@ console.log("the prod in review card" + prod)
         });
     }
   }, []);
-
+console.log("this is the review ID")
+console.log(review.id)
 
   function deleteReview() {
+    // review.id is working, but the onDelete is not
+    debugger
     onDelete(review.id)
-    history.push('/products');
+    history.push('/reviews');
   };
 
-  console.log(review?.product)
+  console.log("REVIEW CARD")
+  console.log(review)
   return (
     <div className="card" elevation={0}>
       {!isEditing ? (
@@ -57,7 +61,7 @@ console.log("the prod in review card" + prod)
           <div key={review?.id} align="center">
             <Link to={`/reviews/${review?.id}`}>
             <h1 variant="h5" component="h3" color="secondary">
-              Product: {review?.product}
+              Product: {review?.product_name}
             </h1>
             </Link>
             <h1 variant="h5" component="h3" color="secondary">
