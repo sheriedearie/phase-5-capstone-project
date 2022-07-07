@@ -68,7 +68,7 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
               Creator: {productObj?.user?.name}
             </h1>
             <h1 variant="h5" component="h3" color="secondary">
-              Number of Purchasers: {productObj?.buyer_purchases}
+              Number of Purchasers: {productObj?.product_purchases}
             </h1>
 
           </div>

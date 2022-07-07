@@ -4,7 +4,6 @@ class Api::ReviewsController < ApplicationController
     end
 
     def create
-        byebug
         # purchase = Purchase.find(params[:purchase_id])
         reviews = Review.create!(rating: params[:rating], comment: params[:comment], purchase_id: params[:purchase_id])#, user_id: params[:user_id])
         render json: reviews, status: :created

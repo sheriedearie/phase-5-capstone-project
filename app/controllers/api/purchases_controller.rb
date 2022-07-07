@@ -9,7 +9,6 @@ class Api::PurchasesController < ApplicationController
     end
 
     def create
-        byebug
         current_user.cart_products.each do |cartProd| 
             Purchase.create!(user_id: params[:user_id], product_id: cartProd.product_id)
         # cartProd.destroy
