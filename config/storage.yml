@@ -5,3 +5,10 @@ test:
 local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
+
+amazon:
+  service: S3
+  access_key_id: <%= ENV['AKIAWPJP3GJ62UUGW2PK'] %>
+  secret_access_key: <%= ENV['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'] %>
+  region: <%= ENV['US West (Oregon) us-west-2'] %>
+  bucket: <%= ENV['phase-5-capstone-project'] %>
