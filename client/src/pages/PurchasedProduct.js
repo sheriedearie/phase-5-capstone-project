@@ -17,7 +17,7 @@ const PurchasedProduct = ({ purchase }) => {
                 {/* </Link> */}
 
                 <h1 variant="h5" component="h3" color="secondary">
-                    Name: {purchase.product?.name}
+                    Product: {purchase.product?.name}
                 </h1>
                 <h1 variant="h5" component="h3" color="secondary">
                     Price: ${purchase.product?.price}

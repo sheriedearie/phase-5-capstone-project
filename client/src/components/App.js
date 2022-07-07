@@ -1,6 +1,6 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, About, NotFound } from "react";
 import { UserContext } from './User'
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, HashRouter, Link } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import NewProduct from "../pages/NewProduct";
@@ -12,6 +12,7 @@ import ProductList from '../pages/ProductList'
 import Cart from '../pages/Cart'
 import ReviewContainer from "../pages/ReviewContainer";
 import NewReview from '../pages/NewReview';
+// import express from '/'
 
 function App() {
   const { user, setUser } = useContext(UserContext);
@@ -21,14 +22,22 @@ function App() {
   const [errors, setErrors] = useState([]);
 
 
-  // const onRemove = (prod) => {
-  //   const exist = cart.find((item) => item.id === prod.id)
-  //   if (exist.qty === 1) {
-  //     setCart(cart.filter((item) => item.id !== prod.id))
-  //   } else {
-  //   setCart(cart.map(item => item.id === prod.id ? {...exist, qty: exist.qty - 1 } : item))
-  //   }
-  // }
+  // const path = require('path');
+  // const express = require('express');
+  // const app = express();
+
+  // const publicPath = path.join(__dirname, '..', 'public');
+  // const port = process.env.PORT || 4000;
+
+  // app.use(express.static(publicPath));
+  // app.get('*', (req, res) => {
+  //    res.sendFile(path.join(publicPath, 'index.html'));
+  // });
+
+  // app.listen(port, () => {
+  //    console.log('Server is up!');
+  // });
+
 
   function addToCart(prod) {
     fetch(`api/users/${user.id}/cart_products`,
@@ -49,15 +58,6 @@ function App() {
         }
       })
       .catch((err) => setErrors(err.errors));
-    // const inCart = cart.find(item => item.id === prod.id);
-    // if (inCart) {
-    //   setCart(cart.map(item => item.id === prod.id ? { ...inCart, qty: inCart.qty + 1 } : item
-    //   ));
-    // } else {
-    //   setCart([...cart, { ...prod, qty: 1 }])
-    // }
-    // console.log("UPDATED CART")
-    // console.log(cart)
   };
 
   function removeFromCart(prodID) {
@@ -72,15 +72,6 @@ function App() {
     })
       .catch((err) => setErrors(err.errors));
 
-
-    //   const inCart = cart.find((item) => item.id === prod)
-    //   if (inCart.qty === 1) {
-    //       setCart(cart.filter((item) => item.id !== prod))
-    //   } else {
-    //       setCart(cart.map(item => item.id === prod ? { ...inCart, qty: inCart.qty - 1 } : item))
-    //   }
-    //   console.log("this is prod inside of the cart")
-    //   console.log(prod)
   };
 
   function deleteProduct(prodID) {
@@ -138,14 +129,9 @@ function App() {
   else {
     return (
       <>
-        {/* 
-        <div className="App">
-          <h1>Count: {count}</h1>
-          <button onClick={() => setCount(count + 1)}>+</button>
-        </div> */}
-
+ 
         <>
-
+{/* <HashRouter basename='/'> */}
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/products/new">
@@ -153,9 +139,6 @@ function App() {
             </Route>
             <Route path="/products">
               <ProductList prods={products} deleteProd={deleteProduct} onAdd={addToCart} />
-            </Route>
-            <Route path="/reviews/new">
-              <NewReview />
             </Route>
             <Route path="/reviews">
               <ReviewContainer />
@@ -176,7 +159,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
-
+ {/* </HashRouter> */}
         </>
 
       </>
