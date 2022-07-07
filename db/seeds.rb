@@ -12,7 +12,7 @@ Review.delete_all
 CartProduct.delete_all
 
 peter = User.create(name: "Peter", username: "PeterPiper", password: "12345", email:"peter@email.com")
-peter.avatar.attach(io: File.open("s3://phase-5-capstone-project/peter.webp"), filename: 'peter.png')
+peter.avatar.attach(io: File.open("s3://phase-5-capstone-project/peter.webp"), filename: 'peter.webp')
 stephen = User.create(name: "Stephen", username: "stephen123", password: "password", email:"stephen@email.com")
 stephen.avatar.attach(io: File.open("s3://phase-5-capstone-project/Man.png"), filename: 'Man.png')
 sheridan = User.create(name: "Sheridan", username: "sheridan95", password: "12345", email:"sheridanmaustad@gmail.com")
