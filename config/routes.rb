@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     delete "/logout", to: "sessions#destroy"
     post "/checkout", to: "purchases#create"
     get "/purchased_products", to: "purchases#show"
+    # post '/presigned_url', to: 'direct_upload#create'
 
     resources :reviews
     resources :products
