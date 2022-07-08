@@ -10,6 +10,7 @@ Product.delete_all
 Purchase.delete_all
 Review.delete_all
 CartProduct.delete_all
+# THIS IS A RANDOM CHANGE
 
 peter = User.create(name: "Peter", username: "PeterPiper", password: "12345", email:"peter@email.com")
 peter.avatar.attach(io: File.open("app/assests/peter2.0.png"), filename: 'peter2.0.png')
