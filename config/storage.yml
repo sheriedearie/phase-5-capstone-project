@@ -8,7 +8,7 @@ local:
 
 amazon:
   service: S3
-  access_key_id: <%= ENV['AKIAWPJP3GJ62UUGW2PK'] %>
-  secret_access_key: <%= ENV['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'] %>
-  region: <%= ENV['US West (Oregon) us-west-2'] %>
-  bucket: <%= ENV['phase-5-capstone-project'] %>
+  access_key_id: <%= ENV['ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['SECRET_ACCESS_KEY'] %>
+  region: <%= ENV['REGION'] %>
+  bucket: <%= ENV['BUCKET'] %>
