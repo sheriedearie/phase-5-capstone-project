@@ -1,4 +1,4 @@
-require "pry"
+# require "pry"
 
 class ApplicationController < ActionController::API
   include ActionController::Cookies
