@@ -12,19 +12,13 @@ Review.delete_all
 CartProduct.delete_all
 
 peter = User.create(name: "Peter", username: "PeterPiper", password: "12345", email:"peter@email.com")
-# peter.avatar.attach(io: File.open("s3://phase-5-capstone-project/peter2.0.png"), filename: 'peter2.0.png')
 stephen = User.create(name: "Stephen", username: "stephen123", password: "password", email:"stephen@email.com")
-# stephen.avatar.attach(io: File.open("s3://phase-5-capstone-project/Man.png"), filename: 'Man.png')
 sheridan = User.create(name: "Sheridan", username: "sheridan95", password: "12345", email:"sheridanmaustad@gmail.com")
-# sheridan.avatar.attach(io: File.open("s3://phase-5-capstone-project/girl.jpg"), filename: 'girl.jpg')
 
 
 xbox = Product.create(user: peter, name: "Xbox", price: 300)
-# xbox.photo.attach(io: File.open("s3://phase-5-capstone-project/xbox.jpg"), filename: 'xbox.jpg')
 notebook = Product.create(user: sheridan, name: "Notebook", price: 10)
-# notebook.photo.attach(io: File.open("s3://phase-5-capstone-project/notebook.jpg"), filename: 'notebook.jpg')
 gopro = Product.create(user: stephen, name: "Gopro", price: 350)
-# gopro.photo.attach(io: File.open("s3://phase-5-capstone-project/gopro.jpg"), filename: 'gopro.jpg')
 
 purchase1 = Purchase.create(user:sheridan)
 purchase2 = Purchase.create(user:stephen)
