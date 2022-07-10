@@ -10,7 +10,6 @@ import Profile from "../pages/Profile";
 import ProductList from '../pages/ProductList'
 import Cart from '../pages/Cart'
 import ReviewContainer from "../pages/ReviewContainer";
-// import express from '/'
 
 function App() {
   const { user, setUser } = useContext(UserContext);

@@ -46,10 +46,6 @@ const NewReview = ({ purchase }) => {
         });
     }
 
-    function handleChange(e) {
-        // setprods(e.target.value)
-    }
-
     return (
         <Wrapper>
             <WrapperChild>
