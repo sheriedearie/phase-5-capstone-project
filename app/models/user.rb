@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :cart_products, dependent: :destroy
+  has_many :cart_products#, dependent: :destroy
   has_many :purchases
   has_many :reviews, through: :purchases
   has_many :products
@@ -15,5 +15,5 @@ class User < ApplicationRecord
   def total_purchased_products
     self.purchases.length
   end
-
+# random comment
 end
