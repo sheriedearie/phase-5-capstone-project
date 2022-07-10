@@ -4,61 +4,61 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const ProductContainer = ({onAdd}) => {
-    const [products, setProducts] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState([]);
-    const history = useHistory();
-    const [cart, setCart] = useState([]);
+const ProductContainer = ({ onAdd }) => {
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const history = useHistory();
+  const [cart, setCart] = useState([]);
 
-    console.log("products container = ")
-    console.log(products)
+  console.log("products container = ")
+  console.log(products)
 
-    useEffect(() => {
-        fetch("/api/products")
-            .then((r) => r.json())
-            .then(prods => {
-                setProducts(prods)
-                console.log("PRODUCTS SET =")
-                console.log(prods)
-            }
-            )
-            .catch(err => alert(err))
-    }, []);
+  useEffect(() => {
+    fetch("/api/products")
+      .then((r) => {
+        if (r.ok) {
+          r.json().then(prods => setProducts(prods))
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }}
+      )
+      .catch((err) => setErrors(err.errors));
+  }, []);
 
-    function deleteProduct(prodID) {
-        setErrors([]);
-        setIsLoading(true);
-    
-        console.log("Deleting product: " + prodID)
-    
-        fetch(`/api/products/${prodID}`, {
-          method: 'delete'
-        }).then((r) => {
-          if (r.ok) {
-            setProducts([...products].filter((prod) => prod.id !== prodID))
-          } else {
-            r.json().then((err) => setErrors(err.errors));
-          }
-        })
-          .catch((err) => setErrors(err.errors));
-      };
+  function deleteProduct(prodID) {
+    setErrors([]);
+    setIsLoading(true);
 
-    console.log("TOP DELETE FUNCTION")
-    console.log(deleteProduct.name)
+    console.log("Deleting product: " + prodID)
 
-    // function onAdd(e) {
-    //   addToCart(setCart)
-    // }
-  
+    fetch(`/api/products/${prodID}`, {
+      method: 'delete'
+    }).then((r) => {
+      if (r.ok) {
+        setProducts([...products].filter((prod) => prod.id !== prodID))
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    })
+      .catch((err) => setErrors(err.errors));
+  };
+
+  console.log("TOP DELETE FUNCTION")
+  console.log(deleteProduct.name)
+
+  // function onAdd(e) {
+  //   addToCart(setCart)
+  // }
 
 
-    return (
-        <div>
-            <h1>Products to Purchase</h1>
-            <ProductList prods={products} deleteProd={deleteProduct} onAdd={onAdd}/>
-        </div>
-    )
+
+  return (
+    <div>
+      <h1>Products to Purchase</h1>
+      <ProductList prods={products} deleteProd={deleteProduct} onAdd={onAdd} />
+    </div>
+  )
 }
 
 export default ProductContainer

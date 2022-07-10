@@ -11,7 +11,7 @@ class Api::PurchasesController < ApplicationController
     def create
         current_user.cart_products.each do |cartProd| 
             Purchase.create!(user_id: params[:user_id], product_id: cartProd.product_id)
-        # cartProd.destroy
+            cartProd.destroy
         end
     end
     

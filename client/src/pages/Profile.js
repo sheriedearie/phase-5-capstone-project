@@ -2,17 +2,10 @@ import { UserContext } from '../components/User'
 import PurchasedProduct from './PurchasedProduct';
 import React, { useEffect, useState, useContext } from 'react'
 
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import ProductContainer from './ProductContainer';
-// import ReviewContainer from './ReviewContainer';
-
-
 function Profile() {
   const [purchases, setPurchases] = useState([]);
   const { user } = useContext(UserContext);
   const avatarURL = user.avatar === null ? window.location.origin + './default-avatar.png' : user.avatar.url;
-
 
   // map through purchases
   useEffect(() => {
@@ -31,6 +24,7 @@ function Profile() {
 
   console.log(user.name)
   console.log("this is the end of the profile")
+  // const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
   return (
     <>
@@ -40,19 +34,15 @@ function Profile() {
         <img src={avatarURL} alt="avatar" />
 
       </div>
+
       <div>
-        <h2>You have purchased this many products: {user.total_purchased_products}</h2>
+        {/* if the cart checkout out increase it */}
+        <h2>You have purchased this many products: {purchases.length}</h2>
         {/* Displaying products that have been purchased */}
-         {purchases?.map(purchase => {
-          return (<PurchasedProduct key={purchase?.id} purchase={purchase}/>)
-         })}  
-
-        {/* review console */}
-        {/* check serializer */}
-        {/* serialized in the products */}
-        {/* how does backend receive the data if array of purchases, and a purchase has an array of products - then leave 45-47 alone */}
+        {purchases?.map(purchase => {
+          return (<PurchasedProduct key={purchase?.id} purchase={purchase} />)
+        })}
       </div>
-
 
     </>
   );

@@ -34,7 +34,6 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
       fetch(`/api/products/${prod.id}`)
         .then((r) => r.json())
         .then((product) => {
-          debugger;
           setProductObj(product);
           console.log("Product ID in the product card = ")
           console.log(product)

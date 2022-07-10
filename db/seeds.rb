@@ -31,9 +31,9 @@ purchase1 = Purchase.create(user:sheridan)
 purchase2 = Purchase.create(user:stephen)
 purchase3 = Purchase.create(user:peter)
 
-CartProduct.create(user_id: 3, product_id: 1)
-CartProduct.create(user_id: 2, product_id: 2)
-CartProduct.create(user_id: 1, product_id: 3)
+# CartProduct.create(user_id: 3, product_id: 1)
+# CartProduct.create(user_id: 2, product_id: 2)
+# CartProduct.create(user_id: 1, product_id: 3)
 
 # Review.create(purchase: purchase1, rating: 5, comment:"This product is amazing, 10/10!")
 # Review.create(purchase: purchase2, rating: 4, comment:"I love how easy it is to write in this!")

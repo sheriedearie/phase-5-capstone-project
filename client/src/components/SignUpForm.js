@@ -22,8 +22,11 @@ function SignUpForm({ onLogin }) {
     formData.append("username", username)
     formData.append("password", password)
     formData.append("password_confirmation", passwordConfirmation)
-    // formData.append("avatar", avatar)
-
+    //formData.append("avatar", avatar)
+    console.log("Signup FORM DATA")
+    for (let el of formData.values()) {
+      console.log(el)
+    }
 
     fetch("/api/signup", {
       method: "POST",
@@ -39,7 +42,7 @@ function SignUpForm({ onLogin }) {
         }
       });
   }
-console.log(onLogin)
+
   return (
     <form onSubmit={handleSubmit}>
       <FormField>
@@ -93,13 +96,12 @@ console.log(onLogin)
         />
       </FormField>
       <FormField>
-        <Label htmlFor="image_url">Profile Image</Label>
+        <Label htmlFor="mediaurl">Profile Image</Label>
         <Input
           type="file"
-          id="avatar"
+          name="avatar"
           ref={avatar}
-          // value={avatar.current}
-          onChange={(e) => avatar.current = (e.target.value)}
+          onChange={(e) => avatar.current = e.target.value }
         />
       </FormField>
       <FormField>

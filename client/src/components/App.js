@@ -21,24 +21,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
-
-  // const path = require('path');
-  // const express = require('express');
-  // const app = express();
-
-  // const publicPath = path.join(__dirname, '..', 'public');
-  // const port = process.env.PORT || 4000;
-
-  // app.use(express.static(publicPath));
-  // app.get('*', (req, res) => {
-  //    res.sendFile(path.join(publicPath, 'index.html'));
-  // });
-
-  // app.listen(port, () => {
-  //    console.log('Server is up!');
-  // });
-
-
   function addToCart(prod) {
     fetch(`api/users/${user.id}/cart_products`,
       {
@@ -131,7 +113,6 @@ function App() {
       <>
  
         <>
-{/* <HashRouter basename='/'> */}
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/products/new">
@@ -159,7 +140,6 @@ function App() {
               <Home />
             </Route>
           </Switch>
- {/* </HashRouter> */}
         </>
 
       </>

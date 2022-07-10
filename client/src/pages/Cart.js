@@ -8,19 +8,21 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
-    const { user, setUser } = useContext(UserContext);
+    const { user } = useContext(UserContext);
     const form = useRef();
 
     const sendEmail = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_wfn86pq', 'template_oc88con', form.current, 'AXOv5cbmlxB0LSRNl')
+        emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, form.current, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
                 console.log(error.text);
             });
     };
+
+    // checkout has to be there only when there are products to purchase and not when the cart is empty
 
     console.log("HERES THE CART")
     console.log(cart)
@@ -60,28 +62,33 @@ const Cart = ({ onAdd, onRemove, cart, setCart, products }) => {
                         const url = !!prod?.photo ? prod.photo.url : window.location.origin + '/default-avatar.png';
                         return (
                             <div className="container" key={prod.id} >
+
                                 <Box>
                                     <h1>{prod.name}</h1>
                                     <h1>${prod.price}</h1>
                                     <img src={url} alt="product" style={{ width: "50%", height: "50%" }} />
                                     {<Button onClick={() => onRemove(prod.id)}>Remove</Button>}
                                 </Box>
-                                <FormField>
-                                    <form ref={form} onSubmit={sendEmail}>
-                                        <Label>Name</Label>
-                                        <Input type="text" name="user_name" />
-                                        <Label>Email</Label>
-                                        <Input type="email" name="user_email" />
-                                        &nbsp;
-                                        &nbsp;
-                                        <Button type="submit" onClick={goToCheckout}>Checkout</Button>
-                                        &nbsp;
-                                    </form>
-                                </FormField>
+
                             </div>
+
                         )
                     })}
 
+                    
+                <FormField>
+                    <form ref={form} onSubmit={sendEmail}>
+                        <Label>Name</Label>
+                        <Input type="text" name="user_name" placeholder="Name"/>
+                        <Label>Email</Label>
+                        <Input type="email" name="user_email" placeholder="Email"/>
+                        &nbsp;
+                        &nbsp;
+                        <Button type="submit" onClick={goToCheckout}>Checkout</Button>
+                        &nbsp;
+                    </form>
+
+                </FormField>
                 &nbsp;
                 &nbsp;
             </Box>

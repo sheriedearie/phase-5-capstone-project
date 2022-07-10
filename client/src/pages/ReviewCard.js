@@ -34,7 +34,6 @@ console.log("the prod in review card" + prod)
       fetch(`/api/reviews/${review.id}`)
         .then((r) => r.json())
         .then((review) => {
-          debugger;
           setReviewObj(review);
           console.log("Product ID in the product card = ")
           console.log(review)
@@ -45,8 +44,6 @@ console.log("this is the review ID")
 console.log(review.id)
 
   function deleteReview() {
-    // review.id is working, but the onDelete is not
-    debugger
     onDelete(review.id)
     history.push('/reviews');
   };
