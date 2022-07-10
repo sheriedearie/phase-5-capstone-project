@@ -1,6 +1,4 @@
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import Typography from '@mui/material/Typography';
+
 import { Button, Error, FormField } from "../styles";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link, useLocation } from 'react-router-dom';
@@ -34,6 +32,7 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
       fetch(`/api/products/${prod.id}`)
         .then((r) => r.json())
         .then((product) => {
+          debugger;
           setProductObj(product);
           console.log("Product ID in the product card = ")
           console.log(product)
@@ -67,7 +66,7 @@ const ProductCard = ({ prod, onDelete, onAdd }) => {
               Creator: {productObj?.user?.name}
             </h1>
             <h1 variant="h5" component="h3" color="secondary">
-              Number of Purchasers: {productObj?.product_purchases}
+              Number of Purchasers: {productObj?.total_buyers_who_purchased}
             </h1>
 
           </div>

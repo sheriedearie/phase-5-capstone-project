@@ -20,14 +20,14 @@ function ReviewList({ reviews, onDelete }) {
           }
         })
         .catch((err) => alert(err.errors))
-      console.log("these are the reviewslist") 
+      console.log("these are the reviewslist")
       console.log(reviewList)
     }
   }, [])
 
   const finalReviewList = reviews ? reviews : reviewList
   const renderReview = finalReviewList?.map(review => {
-    return <ReviewCard key={review.id} review={review} onDelete={onDelete}/>
+    return <ReviewCard key={review.id} review={review} onDelete={onDelete} />
   });
 
   return (

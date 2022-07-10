@@ -5,13 +5,13 @@ import { Button, Error, FormField, Input, Label } from "../styles";
 
 function EditProduct({ productObj, updateProduct }) {
     const [product, setProduct] = useState({
-    name: productObj.name,
-    price: productObj.price
+        name: productObj.name,
+        price: productObj.price
     });
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
-    
+
     console.log("here is where to edit the product")
     console.log(product)
 
@@ -26,13 +26,13 @@ function EditProduct({ productObj, updateProduct }) {
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
-    
+
         fetch(`/api/products/${productObj.id}`, {
             method: "PATCH",
             headers: {
                 'Content-Type': "application/json",
             },
-            body: JSON.stringify({name: product.name, price: product.price})
+            body: JSON.stringify({ name: product.name, price: product.price })
         }).then((r) => {
             console.log(product.name)
             setIsLoading(false);

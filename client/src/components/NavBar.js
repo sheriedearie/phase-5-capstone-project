@@ -18,7 +18,7 @@ function NavBar({ user, setUser }) {
         <Link to="/home">Kome N Get'it</Link>
       </Logo>
       <Nav user={user} setUser={setUser}>
-      <Button as={Link} to="/profile">
+        <Button as={Link} to="/profile">
           Profile
         </Button>
         <Button as={Link} to="/products/new">

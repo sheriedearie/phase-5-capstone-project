@@ -1,7 +1,7 @@
 import ReviewList from "./ReviewList";
 import React, { useState, useEffect } from "react";
 
-const ReviewContainer = ({onDelete, onAdd}) => {
+const ReviewContainer = ({ onDelete, onAdd }) => {
   const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -26,7 +26,7 @@ const ReviewContainer = ({onDelete, onAdd}) => {
   function deleteReview(reviewID) {
     setErrors([]);
     setIsLoading(true);
-    
+
     console.log("review ID:")
     console.log(reviewID)
 

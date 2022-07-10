@@ -1,6 +1,6 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../components/User";
-import { useHistory, Redirect, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { Button, Error, FormField, Input, Label } from "../styles";
 

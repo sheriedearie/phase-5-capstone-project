@@ -1,8 +1,5 @@
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import Typography from '@mui/material/Typography';
-import { Button, Input, Error, FormField } from "../styles";
-import React, { useState, useContext, useEffect } from "react";
+import { Button, Error, FormField } from "../styles";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import EditReview from './EditReview';
 
@@ -21,7 +18,7 @@ const ReviewCard = ({ review, prod, onDelete }) => {
   const updateReview = () => {
     setIsEditing(true);
   }
-console.log("the prod in review card" + prod)
+  console.log("the prod in review card" + prod)
 
   const commitUpdate = (updatedReview) => {
     console.log("UPDATED REVIEW")
@@ -40,8 +37,8 @@ console.log("the prod in review card" + prod)
         });
     }
   }, []);
-console.log("this is the review ID")
-console.log(review.id)
+  console.log("this is the review ID")
+  console.log(review.id)
 
   function deleteReview() {
     onDelete(review.id)
@@ -57,9 +54,9 @@ console.log(review.id)
 
           <div key={review?.id} align="center">
             <Link to={`/reviews/${review?.id}`}>
-            <h1 variant="h5" component="h3" color="secondary">
-              Product: {review?.product_name}
-            </h1>
+              <h1 variant="h5" component="h3" color="secondary">
+                Product: {review?.product_name}
+              </h1>
             </Link>
             <h1 variant="h5" component="h3" color="secondary">
               Rating: {review?.rating}

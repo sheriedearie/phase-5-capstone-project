@@ -2,8 +2,7 @@ import { UserContext } from '../components/User'
 import PurchasedProduct from './PurchasedProduct';
 import React, { useEffect, useState, useContext } from 'react'
 
-function Profile() {
-  const [purchases, setPurchases] = useState([]);
+function Profile({purchases, setPurchases}) {
   const { user } = useContext(UserContext);
   const avatarURL = user.avatar === null ? window.location.origin + './default-avatar.png' : user.avatar.url;
 
@@ -24,7 +23,6 @@ function Profile() {
 
   console.log(user.name)
   console.log("this is the end of the profile")
-  // const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
   return (
     <>

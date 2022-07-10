@@ -10,76 +10,76 @@
 color: #394b45;
 this color is a terra cotta color
  color: #995312; */
- /* as well as this - this one is deeper
+/* as well as this - this one is deeper
  color: #994718 */
- /* this ia a pretty greenish grey
+/* this ia a pretty greenish grey
  what I have the background set as
  color: #c1caaf */
- /* this is like a mustard yellow
+/* this is like a mustard yellow
  color: #aa8031 */
- /* more of a mustard yellow
+/* more of a mustard yellow
  color: #BF923F */
- /* #C68E25 */
- div.card {
-    border-width: 1pt;
-    border-color: black;
-    width: 500px;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    box-shadow: 10px 10px 54px -6px;
-  }
- 
-  .wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding: 215px;
-  }
- 
-  .center {
-    box-shadow: 10px 10px 54px -6px;
-    border-width: 1pt;
-    border-color: black;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 200px;
-    width: 50%;
-  }
- 
-  h1 {
-    text-align: center;
-    margin-top: 50px;
-  }
- 
-  h3,
-  p {
-    text-align: center;
-    margin: top 2px;
-  }
- 
-  h2 {
-    text-align: center;
-    margin-top: 50px;
-  }
- 
-  h3.title {
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
- 
-  box {
-    text-align: center;
-  }
- 
-  img {
-    /* align-items: center; */
-    width: 100%;
-  }
- 
-  .editCmt {
-    text-align: center;
-  }
+/* #C68E25 */
+div.card {
+  border-width: 1pt;
+  border-color: black;
+  width: 500px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  box-shadow: 10px 10px 54px -6px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 215px;
+}
+
+.center {
+  box-shadow: 10px 10px 54px -6px;
+  border-width: 1pt;
+  border-color: black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  width: 50%;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h3,
+p {
+  text-align: center;
+  margin: top 2px;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h3.title {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+box {
+  text-align: center;
+}
+
+img {
+  /* align-items: center; */
+  width: 100%;
+}
+
+.editCmt {
+  text-align: center;
+}

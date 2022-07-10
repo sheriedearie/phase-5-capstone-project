@@ -1,17 +1,15 @@
-import React, { useEffect, useContext, useState, About, NotFound } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { UserContext } from './User'
-import { Switch, Route, HashRouter, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import NewProduct from "../pages/NewProduct";
 import Home from "./Home";
 import SignUpForm from "./SignUpForm";
 import Profile from "../pages/Profile";
-import ProductContainer from "../pages/ProductContainer";
 import ProductList from '../pages/ProductList'
 import Cart from '../pages/Cart'
 import ReviewContainer from "../pages/ReviewContainer";
-import NewReview from '../pages/NewReview';
 // import express from '/'
 
 function App() {
@@ -20,6 +18,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [purchases, setPurchases] = useState([]);
 
   function addToCart(prod) {
     fetch(`api/users/${user.id}/cart_products`,
@@ -85,7 +84,9 @@ function App() {
       }
       )
       .catch(err => alert(err))
+  }, [purchases]);
 
+  useEffect(() => {
     //Get current user and Cart
     fetch("/api/me").then((r) => {
       if (r.ok) {
@@ -101,8 +102,6 @@ function App() {
         });
       }
     });
-
-
   }, []);
 
   if (!user) {
@@ -111,7 +110,7 @@ function App() {
   else {
     return (
       <>
- 
+
         <>
           <NavBar user={user} setUser={setUser} />
           <Switch>
@@ -131,7 +130,7 @@ function App() {
               <Login />
             </Route>
             <Route path="/profile">
-              <Profile />
+              <Profile purchases={purchases} setPurchases={setPurchases} />
             </Route>
             <Route path="/signup">
               <SignUpForm />

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const ProductContainer = ({ onAdd }) => {
+const ProductContainer = ({ onAdd, purchases }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -21,10 +21,11 @@ const ProductContainer = ({ onAdd }) => {
           r.json().then(prods => setProducts(prods))
         } else {
           r.json().then((err) => setErrors(err.errors));
-        }}
+        }
+      }
       )
       .catch((err) => setErrors(err.errors));
-  }, []);
+  }, [purchases]);
 
   function deleteProduct(prodID) {
     setErrors([]);
@@ -46,11 +47,6 @@ const ProductContainer = ({ onAdd }) => {
 
   console.log("TOP DELETE FUNCTION")
   console.log(deleteProduct.name)
-
-  // function onAdd(e) {
-  //   addToCart(setCart)
-  // }
-
 
 
   return (
